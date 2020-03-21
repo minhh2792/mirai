@@ -1,5 +1,5 @@
 require("dotenv").config();
-const login = require("@login");
+const login = require("@app/login");
 const { Sequelize, sequelize, Op } = require("@database");
 const logger = require("@logger");
 const { email, password, appStateFile } = require("@config");
