@@ -49,6 +49,7 @@
   },
   "_moduleAliasIgnoreWarning": true,
   "_moduleAliases": {
+    "@login": "./app/login",
     "@app": "./app",
     "@modules": "./app/modules",
     "@controllers": "./app/controllers",
