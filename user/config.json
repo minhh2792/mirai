@@ -1,0 +1,13 @@
+{
+  "user": [
+    {   
+        "email" : "#",
+        "password" : "#"
+    }
+  ],
+  "config": {
+      "adminID" : [100023202380649,100006360818148],
+      "selfListen" : true
+  }
+}
+ 
