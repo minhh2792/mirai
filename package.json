@@ -23,6 +23,7 @@
     "url": "https://github.com/VNBot-Developers/annie/issues"
   },
   "homepage": "https://github.com/VNBot-Developers/annie#readme",
+  "dependencies": {
     "chalk": "^3.0.0",
     "dotenv": "^8.2.0",
     "ejs": "^3.0.1",
