@@ -4,7 +4,8 @@
   "description": "I am Annie - A facebook messenger bot - Created by VNBot-Developers Team",
   "main": "index.js",
   "scripts": {
-    "postinstall": "link-module-alias"
+    "postinstall": "link-module-alias",
+    "update": "npm cache clean --force"   
   },
   "repository": {
     "type": "git",
@@ -49,6 +50,7 @@
   },
   "_moduleAliasIgnoreWarning": true,
   "_moduleAliases": {
+    "@login": "./app/login",
     "@app": "./app",
     "@modules": "./app/modules",
     "@controllers": "./app/controllers",
