@@ -1,0 +1,59 @@
+{
+  "name": "annie",
+  "version": "1.0.0",
+  "description": "I am Annie - A facebook messenger bot - Created by VNBot-Developers Team",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "link-module-alias"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VNBot-Developers/annie.git"
+  },
+  "keywords": [
+    "bot",
+    "facebook",
+    "annie",
+    "messenger",
+    "AI"
+  ],
+  "author": "VNBot-Developers",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VNBot-Developers/annie/issues"
+  },
+  "homepage": "https://github.com/VNBot-Developers/annie#readme",
+    "chalk": "^3.0.0",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.0.1",
+    "express": "^4.17.1",
+    "facebook-chat-api": "^1.7.0",
+    "fca-unofficial": "^1.1.8",
+    "file-type": "^14.1.4",
+    "fs": "^0.0.2",
+    "jimp": "^0.9.6",
+    "md5": "^2.2.1",
+    "node-pre-gyp": "^0.14.0",
+    "oauth": "^0.9.15",
+    "pg": "^7.18.2",
+    "pg-hstore": "^2.3.3",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.5",
+    "sequelize": "^5.21.5",
+    "sqlite3": "^4.1.1",
+    "text2png": "^2.3.0"
+  },
+  "devDependencies": {
+    "link-module-alias": "^1.2.0"
+  },
+  "_moduleAliasIgnoreWarning": true,
+  "_moduleAliases": {
+    "@app": "./app",
+    "@modules": "./app/modules",
+    "@controllers": "./app/controllers",
+    "@logger": "./app/modules/log.js",
+    "@config": "./config",
+    "@database": "./database",
+    "@models": "./database/models"
+  }
+}
