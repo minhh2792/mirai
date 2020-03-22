@@ -52,7 +52,7 @@
   "_moduleAliasIgnoreWarning": true,
   "_moduleAliases": {
     "~login": "./app/login/index.js",
-    "~app": "./app/index.js",
+    "~app": "./app",
     "~modules": "./app/modules",
     "~controllers": "./app/controllers",
     "~logger": "./app/modules/log.js",
