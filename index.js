@@ -1,8 +1,8 @@
 require("dotenv").config();
-const login = require("@login");
-const { Sequelize, sequelize, Op } = require("@database");
-const logger = require("@logger");
-const { email, password, appStateFile } = require("@config");
+const login = require("~login");
+const { Sequelize, sequelize, Op } = require("~database");
+const logger = require("~logger");
+const { email, password, appStateFile } = require("~config");
 const fs = require("fs");
 const __GLOBAL = new Object({
     threadBlocked: new Array(),
@@ -16,12 +16,12 @@ facebook = ({ Op, models }) => login({ email, password, appState: require(appSta
     fs.writeFileSync(appStateFile, JSON.stringify(api.getAppState(), null, '\t'));
     logger('Đăng nhập thành công!', 0);
     //Listening
-    api.listen(require("@app/listen")({ api, Op, models, __GLOBAL }))
+    api.listen(require("~app/listen")({ api, Op, models, __GLOBAL }))
 })
 sequelize.authenticate()
     .then(() => logger('Connect database thành công!', 0), () => logger('Connect database thất bại!', 2))
     .then(() => {
-        let models = require("@database/model")({ Sequelize, sequelize });
+        let models = require("~database/model")({ Sequelize, sequelize });
         facebook({ Op, models });
     })
     .catch((e) => {
