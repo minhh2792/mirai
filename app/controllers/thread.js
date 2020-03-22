@@ -1,4 +1,4 @@
-const logger = require("@logger");
+const logger = require("~logger");
 module.exports = function ({ models, api }) {
     const Thread = models.use('thread');
     function getThreads(where = {}) {
