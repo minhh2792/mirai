@@ -1,4 +1,4 @@
-const music = require("@controllers/music");
+const music = require("~controllers/music");
 module.exports = function ({ api, modules, config, __GLOBAL, User, Thread }) {
     return function ({ event }) {
         const { confirm } = __GLOBAL;
