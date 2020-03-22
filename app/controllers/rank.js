@@ -1,4 +1,4 @@
-const logger = require("@logger");
+const logger = require("~logger");
 module.exports = function ({ models, api }) {
     const User = models.use('user');
     const FACTOR = 3;
