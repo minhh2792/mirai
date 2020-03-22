@@ -51,8 +51,8 @@
   },
   "_moduleAliasIgnoreWarning": true,
   "_moduleAliases": {
-    "~login": "./app/login",
-    "~app": "./app",
+    "~login": "./app/login/index.js",
+    "~app": "./app/index.js",
     "~modules": "./app/modules",
     "~controllers": "./app/controllers",
     "~logger": "./app/modules/log.js",
