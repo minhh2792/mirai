@@ -51,13 +51,13 @@
   },
   "_moduleAliasIgnoreWarning": true,
   "_moduleAliases": {
-    "~login": "../app/login",
-    "~app": "../app",
-    "~modules": "../app/modules",
-    "~controllers": "../app/controllers",
-    "~logger": "../app/modules/log.js",
-    "~config": "../config",
-    "~database": "../database",
-    "~models": "../database/models"
+    "~login": "app/login",
+    "~app": "app",
+    "~modules": "app/modules",
+    "~controllers": "app/controllers",
+    "~logger": "app/modules/log.js",
+    "~config": "config",
+    "~database": "database",
+    "~models": "database/models"
   }
 }
