@@ -1,5 +1,5 @@
 const Sequelize = require("sequelize");
-const {database} = require("~config");
+const {database} = require("./config");
 const dialect = process.env.DIALECT || 'sqlite';
 module.exports = {
     sequelize: new Sequelize({
