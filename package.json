@@ -44,6 +44,6 @@
     "sequelize": "^5.21.5",
     "sqlite3": "^4.1.1",
     "text2png": "^2.3.0"
-    },
+  },
   "devDependencies": {},
 }
