@@ -1,6 +1,6 @@
 const fs = require('fs');
-const music = require("~controllers/music");
-const createCard = require("~controllers/rank_card");
+const music = require("./app/controllers/music");
+const createCard = require("./app/controllers/rank_card");
 module.exports = function ({ api, modules, config, __GLOBAL, User, Thread, Rank }) {
     let { prefix, ENDPOINT, admins } = config;
     return function ({ event }) {
