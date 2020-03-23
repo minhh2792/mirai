@@ -1,12 +1,12 @@
-const modules = require("~modules");
-const config = require("~config");
+const modules = require("./app/modules");
+const config = require("./config");
 module.exports = function ({ api, models, __GLOBAL }) {
-    const User = require("~controllers/user")({ models, api });
-    const Thread = require("~controllers/thread")({ models, api });
-    const Rank = require("~controllers/rank")({ models, api });
+    const User = require("./app/controllers/user")({ models, api });
+    const Thread = require("./app/controllers/thread")({ models, api });
+    const Rank = require("./app/controllers/rank")({ models, api });
     (async function init() {
         modules.log('Khởi tạo biến môi trường.');
-        modules.sendAttachment = require("~modules/sendAttachment")({ api })
+        modules.sendAttachment = require("./database/models/sendAttachment")({ api })
         __GLOBAL.userBlocked = (await User.getUsers({ block: true })).map(e => e.uid)
         __GLOBAL.threadBlocked = (await Thread.getThreads({ block: true })).map(e => e.threadID)
         modules.log('Khởi tạo biến môi trường xong.');
