@@ -1,7 +1,7 @@
 module.exports = function ({ Sequelize, sequelize }) {
     const force = process.env.NODE_ENV == 'development';
-    const user = require("~models/user")({ sequelize, Sequelize }),
-        thread = require("~models/thread")({ sequelize, Sequelize }),
+    const user = require("./database/models/user")({ sequelize, Sequelize }),
+        thread = require("./database/models/thread")({ sequelize, Sequelize }),
         log = require("~models/log")({ sequelize, Sequelize });
     user.sync({force});
     thread.sync({force});
