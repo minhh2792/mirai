@@ -1,6 +1,6 @@
 const fs = require('fs');
-const music = require("./app/controllers/music");
-const createCard = require("./app/controllers/rank_card");
+const music = require("../controllers/music");
+const createCard = require("../controllers/rank_card");
 module.exports = function ({ api, modules, config, __GLOBAL, User, Thread, Rank }) {
     let { prefix, ENDPOINT, admins } = config;
     return function ({ event }) {
@@ -118,28 +118,32 @@ module.exports = function ({ api, modules, config, __GLOBAL, User, Thread, Rank 
 
         /* ==================== SMTHING ================ */
         if (modules.checkCrap(contentMessage)) {
-            api.sendMessage(`Không đươc nói bậy!`, threadID);
+            api.sendMessage(`Onii-chan không được nói bậy nha >:(`, threadID);
             return;
         }
 
-        if (contentMessage == `${prefix}ping`) {
-            api.sendMessage(`${config.botName} has already!`, threadID);
+        if (contentMessage == `em ơi`) {
+            api.sendMessage(`Dạ nii-chan gọi Sumi ạ?`, threadID);
             return;
         }
-
-
+        
+        //lenny
+        if (contentMessage == `${prefix}lenny`) {
+          api.sendMessage("( ͡° ͜ʖ ͡°) ", threadID)
+        }
+        
+        //lenny
+        if (contentMessage == `${prefix}care`) {
+          api.sendMessage("¯\_(ツ)_/¯ ", threadID)
+        }
+        
+        if (contentMessage == `prefix`) {
+          api.sendMessage("Prefix is: !", threadID)
+        }
+        
         if (contentMessage == `${prefix}help`) {
-            event.isGroup && api.sendMessage(`Vui lòng kiểm tra tin nhắn riêng`, threadID);
-            api.sendMessage(`<Đang cập nhật....>`, senderID);
-            return;
-        }
-        if (contentMessage == `${prefix}linh`) {
-            api.createPoll("Linh có xinh không? ", threadID, {
-                "Không": false,
-                "Có": true
-            }, (err) => {
-                if (err) return modules.log(err, 2)
-            });
+            event.isGroup && api.sendMessage(`Nii-chan check tin nhắn của Sumi nha <3`, threadID);
+            api.sendMessage(`đéo có đâu tìm cl à bạn eii ??? hỏi thằng làm ấy ( ͡° ͜ʖ ͡°)  `, senderID);
             return;
         }
 
@@ -151,6 +155,34 @@ module.exports = function ({ api, modules, config, __GLOBAL, User, Thread, Rank 
             })
             return;
         }
+        
+        if(contentMessage.indexOf("nhentai -i ") == 0){
+                        let nhentai = require("./nhentai-search");
+                        nhentai.get(contentMessage.slice(prefix.length + 11, contentMessage.length).trim())
+                            .then((res) => {
+                                if (!res.error) {
+                                    let tags = "";
+                                    res.tags.map(e => {tags = tags + e +", "});
+                                    api.sendMessage("title: " + res.title,threadID);
+                                    api.sendMessage("pages: " + res.pages + "\nfavorites: " + res.favorites);
+                                    api.sendMessage({
+                                        body:"preview image: ",
+                                        attachment:[fs.createReadStream("./"+res.id+"/1.jpg"),fs.createReadStream("./"+res.id+"/2.jpg")]
+                                    },threadID);
+                                    api.sendMessage("tags: \n"+tags.slice(0,tags.length-2),threadID);
+                                } else 
+                                    api.sendMessage("lỗi, id không xác định 😞",threadID);
+                            })
+                    }
+                    if(contentMessage.indexOf("nhentai -d ") == 0){
+                        let nhentai = require("./nhentai-search");
+                        nhentai.get(contentMessage.slice(prefix.length + 11, contentMessage.length).trim())
+                            .then((res)=>{
+                                nhentai.getStream(res.id,res["image-id"],res.pages)
+                                    .then((att)=>{console.log(att);api.sendMessage({attachment:att},threadID)})
+                            });
+                    }
+        
         if (contentMessage.indexOf(`${prefix}music`) == 0) {
 
             let query = contentMessage.slice(prefix.length + 5, contentMessage.length).trim();
