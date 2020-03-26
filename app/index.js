@@ -1,31 +1,42 @@
-require("dotenv").config();
-const login = require("./app/login");
-const { Sequelize, sequelize, Op } = require("./database");
-const logger = require("./app/modules/log.js");
-const { email, password, appStateFile } = require("./config");
-const fs = require("fs");
-const __GLOBAL = new Object({
-    threadBlocked: new Array(),
-    userBlocked: new Array(),
-    swearList: new Array(),
-    confirm: new Array(),
-});
+const modules = require("./modules");
+const config = require("../config");
+module.exports = function ({ api, models, __GLOBAL }) {
+    const User = require("./controllers/user")({ models, api });
+    const Thread = require("./controllers/thread")({ models, api });
+    const Rank = require("./controllers/rank")({ models, api });
+    (async function init() {
+        modules.log('Khởi tạo biến môi trường.');
+        modules.sendAttachment = require("./modules/sendAttachment")({ api })
+        __GLOBAL.userBlocked = (await User.getUsers({ block: true })).map(e => e.uid)
+        __GLOBAL.threadBlocked = (await Thread.getThreads({ block: true })).map(e => e.threadID)
+        modules.log('Khởi tạo biến môi trường xong.');
+    })();
+    const handleMessage = require("./handle/message")({ api, modules, config, __GLOBAL, User, Thread, Rank });
+    const handleEvent = require("./handle/event")({ api, modules, config, __GLOBAL });
+    const handleMessageReaction = require("./handle/message_reaction")({ api, modules, config, __GLOBAL, User, Thread });
+    modules.log(config.prefix || '<none>', '[ prefix ]');
+    modules.log(`${api.getCurrentUserID()} - ${config.botName}`, '[ UID ]');
+    modules.log('Bắt đầu listen!');
+    return function (error, event) {
+        if (error) return modules.log(error, 2);
+        // console.log(__GLOBAL);
+        // console.log(event);
+        switch (event.type) {
+            case 'message':
+                handleMessage({ event })
+                break;
+            case 'event':
+                handleEvent({ event })
+                break;
+            case 'message_reaction':
+                handleMessageReaction({ event })
+                break;
+            default:
+                return;
+                break;
+        }
 
-facebook = ({ Op, models }) => login({ email, password, appState: require(appStateFile) }, function (error, api) {
-    if (error) return logger(error, 2);
-    fs.writeFileSync(appStateFile, JSON.stringify(api.getAppState(), null, '\t'));
-    logger('Đăng nhập thành công!', 0);
-    //Listening
-    api.listenMqtt(require("./app/listen")({ api, Op, models, __GLOBAL }))
-})
-sequelize.authenticate()
-    .then(() => logger('Connect database thành công!', 0), () => logger('Connect database thất bại!', 2))
-    .then(() => {
-        let models = require("./database/model")({ Sequelize, sequelize });
-        facebook({ Op, models });
-    })
-    .catch((e) => {
-
-        logger(`${e.stack}`, 2);
-        // console.error(e);
-    })
+        User.createUser(event.senderID);
+        Thread.createThread(event.threadID);
+    }
+}
