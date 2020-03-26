@@ -7,8 +7,7 @@ const tempFolder = PATH.resolve(__dirname, '../temp');
 module.exports = async function(op) {
     try {
         let buffer = await request(op);
-        let { ext, mime } = fileType(buffer);
-        if (['audio', 'image', 'video'].indexOf(mime.split('/')[0]) == -1) throw Error('Only support audio, image, video file');
+        let { ext, mime } = fileType.fromBuffer(buffer);
         let path = PATH.resolve(tempFolder, `./${md5(new Date() + Math.random())}.${ext}`);
         fs.writeFileSync(`${path}`, buffer);
         return path;
