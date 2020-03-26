@@ -1,7 +1,7 @@
 require("dotenv").config();
 const login = require("./app/login");
 const { Sequelize, sequelize, Op } = require("./database");
-const logger = require("./app/logger");
+const logger = require("./app/modules/log.js");
 const { email, password, appStateFile } = require("./config");
 const fs = require("fs");
 const __GLOBAL = new Object({
@@ -16,7 +16,7 @@ facebook = ({ Op, models }) => login({ email, password, appState: require(appSta
     fs.writeFileSync(appStateFile, JSON.stringify(api.getAppState(), null, '\t'));
     logger('Đăng nhập thành công!', 0);
     //Listening
-    api.listen(require("./app/listen")({ api, Op, models, __GLOBAL }))
+    api.listenMqtt(require("./app/listen")({ api, Op, models, __GLOBAL }))
 })
 sequelize.authenticate()
     .then(() => logger('Connect database thành công!', 0), () => logger('Connect database thất bại!', 2))
