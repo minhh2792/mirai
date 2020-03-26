@@ -6,7 +6,7 @@ module.exports = function ({ api, modules, config, __GLOBAL }) {
 
                 if (addedUserInfo.userFbId == api.getCurrentUserID()) {
 
-                    api.sendMessage("Bot " + config.botName + " connected!\nStart listen!", event.threadID);
+                    api.sendMessage("Đã kết nối thành công \n Sumi-chan đang lắng nghe mọi người chỉ bảo", event.threadID);
                     api.changeNickname(config.botName, event.threadID, api.getCurrentUserID(), (err) => {
                         if (err) return modules.log(err, 2);
                     });
