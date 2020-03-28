@@ -1,8 +1,8 @@
 const path = require("path")
 module.exports = {
-    development: false,
-    email: process.env.EMAIL || 'xyz@gmail.com',
-    password: process.env.PASSWORD || 'xyz',
+      development: false,
+    email: process.env.EMAIL || '#',
+    password: process.env.PASSWORD || '#',
     prefix: process.env.PREFIX || '!',
     botName: process.env.BOT_NAME || 'Sumi-Chan',
     developer: {
