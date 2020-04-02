@@ -124,4 +124,9 @@ node index.js
   sumi khôn : bot sẽ cám ơn bạn thay lời cám ơn của mình :3
  
   chửi thề : sẽ bị bot nhắc chỉnh sửa lại cái nết của bạn "/
+
+**Credits**
+- Contact me at: https://fb.me/Cataliz2k
+
+Cám ơn vì đã tin tưởng bot của tớ <3 | nếu có lỗi gì xin vui lòng báo cáo ở link contact trên của mình nha <3
  
