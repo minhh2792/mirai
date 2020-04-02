@@ -1,0 +1,57 @@
+{
+  "name": "Sumichan",
+  "version": "2.0.2",
+  "description": "I am Sumi-chan - A facebook messenger bot",
+  "main": "index.js",
+  "scripts": {
+    "update": "",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/roxtigger2003/Sumi-chan-bot.git"
+  },
+  "keywords": [
+    "bot",
+    "facebook",
+    "sumichan",
+    "messenger",
+    "AI"
+  ],
+  "author": "roxtigger2003",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/roxtigger2003/sumi-chan-bot/issues"
+  },
+  "homepage": "https://github.com/roxtigger2003/sumi-chan-bot#readme",
+  "dependencies": {
+    "chalk": "^3.0.0",
+    "cheerio": "^1.0.0-rc.3",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.0.2",
+    "express": "^4.17.1",
+    "facebook-chat-api": "^1.7.0",
+    "fca-unofficial": "^1.1.11",
+    "file-type": "^14.1.4",
+    "fluent-ffmpeg": "^2.1.2",
+    "fs": "0.0.2",
+    "jimp": "^0.9.8",
+    "md5": "^2.2.1",
+    "node-osu": "^2.2.0",
+    "node-pre-gyp": "^0.14.0",
+    "oauth": "^0.9.15",
+    "pg": "^7.18.2",
+    "pg-hstore": "^2.3.3",
+    "readline": "^1.3.0",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.5",
+    "sequelize": "^5.21.5",
+    "sqlite3": "^4.1.1",
+    "steam-totp": "^2.1.1",
+    "steam-user": "^4.13.2",
+    "text2png": "^2.3.0",
+    "ytdl-core": "^2.0.1",
+    "popyt": "^3.0.0"
+  },
+  "devDependencies": {}
+}
