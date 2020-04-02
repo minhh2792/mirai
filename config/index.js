@@ -23,6 +23,5 @@ module.exports = {
     swear: {
         limit: 2
     },
-    admins: (process.env.ADMINS || '').split('_').map(e => parseInt(e)),
-    ENDPOINT: require('./api')
+    admins: (process.env.ADMINS || '').split('_').map(e => parseInt(e))
 }
