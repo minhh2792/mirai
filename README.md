@@ -132,7 +132,7 @@ Cám ơn vì đã tin tưởng bot của tớ <3 | nếu có lỗi gì xin vui l
  
 **Previews**
 ![Preview](previews/preview1.jpg)
-![Preview](previews/preview2.png)
+![Preview](previews/preview2.jpg)
 
 **Demo**
 
