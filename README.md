@@ -136,3 +136,4 @@ Cám ơn vì đã tin tưởng bot của tớ <3 | nếu có lỗi gì xin vui l
 
 **Demo**
 
+facebook.com/Catalizcs.SumiChan
