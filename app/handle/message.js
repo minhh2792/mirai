@@ -511,7 +511,7 @@ module.exports = function({
         contentMessage.indexOf("lồn") != -1 ||
         contentMessage.indexOf("địt mẹ") != -1
       ) {
-        const gud = require("./music");
+        const gud = require("./modules/music");
         let callback = function() {
           let up = {
             body: "",
