@@ -9,7 +9,7 @@ module.exports = {
             max: 10,
             min: 0,
             acquire: 30000,
-            idle: 10000
+            idle: 30000
         },
         logging: process.env.NODE_ENV == 'development' ? console.log : false,
 

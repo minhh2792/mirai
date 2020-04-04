@@ -6,7 +6,7 @@ module.exports = {
     request({
       uri: url
     })
-      .pipe(fs.createWriteStream(__dirname + "/src/corona.json"))
+      .pipe(fs.createWriteStream(__dirname + "/../src/corona.json"))
       .on("close", function() {
         callback();
       });

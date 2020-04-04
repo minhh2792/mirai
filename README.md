@@ -1,6 +1,13 @@
 # Sumi-chan-bot
 
-**Bot Sumi-chan Version 2.0.2**
+**Bot Sumi-chan Version 2.0.3**
+
+*có gì mới?
+
++ Thêm tự động nhắc nhở khi tới giờ đi ngủ
++ Tối ưu cũng như clean code
++ fix một số lỗi như database locked
+còn một số lỗi vãn chưa fix được momg các bạn đợi version kế tiếp ;3
 
 Để lấy toàn bộ lệnh của bot bạn có thể sử dụng lệnh !help hoặc đọc ở bên dưới cái readme này!
 
@@ -124,6 +131,8 @@ node index.js
   sumi khôn : bot sẽ cám ơn bạn thay lời cám ơn của mình :3
  
   chửi thề : sẽ bị bot nhắc chỉnh sửa lại cái nết của bạn "/
+  
+  giờ đi ngủ : bot sẽ nhắc bạn đi ngủ từ 22:00 đến 6:00
 
 **Credits**
 - Contact me at: https://fb.me/Cataliz2k

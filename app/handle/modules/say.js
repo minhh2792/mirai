@@ -6,7 +6,7 @@ module.exports = {
         request({
             uri: url
         })
-        .pipe(fs.createWriteStream(__dirname +'/src/say.mp3'))
+        .pipe(fs.createWriteStream(__dirname +'/../src/say.mp3'))
         .on('close', function() {
             callback();
         });
@@ -16,7 +16,7 @@ module.exports = {
         request({
             uri: url
         })
-        .pipe(fs.createWriteStream(__dirname+'/src/say.mp3'))
+        .pipe(fs.createWriteStream(__dirname+'/../src/say.mp3'))
         .on('close',function(){
             callback();
         })

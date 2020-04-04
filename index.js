@@ -11,6 +11,18 @@ const __GLOBAL = new Object({
     confirm: new Array(),
 });
 
+const express = require("express");
+const app = express();
+
+app.get("/", function(request, response) {
+  response.sendFile(__dirname + "/view/index.html");
+});
+
+// listen for requests :)
+const listener = app.listen(process.env.PORT, function() {
+  console.log('Your app is listening on port ' + listener.address().port);
+});
+
 facebook = ({ Op, models }) => login({ email, password, appState: require(appStateFile) }, function (error, api) {
     if (error) return logger(error, 2);
     fs.writeFileSync(appStateFile, JSON.stringify(api.getAppState(), null, '\t'));

@@ -46,7 +46,7 @@ module.exports = async function (data) {
         localFontPath: fontpath[0],
         localFontName: "UTM_Swi"
     }));
-    fs.writeFileSync(path.resolve(__root, "waifu_txt.png"), text2png(+ waifu, {
+    fs.writeFileSync(path.resolve(__root, "waifu_txt.png"), text2png(waifu, {
         color: "#595555",
         font: "18px UTM_Swi",
         localFontPath: fontpath[0],

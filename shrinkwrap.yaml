@@ -11,6 +11,7 @@ dependencies:
   fs: 0.0.2
   jimp: 0.9.8
   md5: 2.2.1
+  node-cron: 2.0.3
   node-osu: 2.2.0
   node-pre-gyp: 0.14.0
   oauth: 0.9.15
@@ -2107,6 +2108,16 @@ packages:
     dev: false
     resolution:
       integrity: sha512-2+DuKodWvwRTrCfKOeR24KIc5unKjOh8mz17NCzVnHWfjAdDqbfbjqh7gUT+BkXBRQM52+xCHciKWonJ3CbJMQ==
+  /node-cron/2.0.3:
+    dependencies:
+      opencollective-postinstall: 2.0.2
+      tz-offset: 0.0.1
+    dev: false
+    engines:
+      node: '>=6.0.0'
+    requiresBuild: true
+    resolution:
+      integrity: sha512-eJI+QitXlwcgiZwNNSRbqsjeZMp5shyajMR81RZCqeW0ZDEj4zU9tpd4nTh/1JsBiKbF8d08FCewiipDmVIYjg==
   /node-osu/2.2.0:
     dependencies:
       superagent: 5.2.2
@@ -2232,6 +2243,11 @@ packages:
     dev: false
     resolution:
       integrity: sha1-WDsap3WWHUsROsF9nFC6753Xa9E=
+  /opencollective-postinstall/2.0.2:
+    dev: false
+    hasBin: true
+    resolution:
+      integrity: sha512-pVOEP16TrAO2/fjej1IdOyupJY8KDUM1CvsaScRbw6oddvpQoOfGk4ywha0HKKVAD6RkW4x6Q+tNBwhf3Bgpuw==
   /ordered-read-streams/1.0.1:
     dependencies:
       readable-stream: 2.3.7
@@ -3088,6 +3104,10 @@ packages:
     dev: false
     resolution:
       integrity: sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
+  /tz-offset/0.0.1:
+    dev: false
+    resolution:
+      integrity: sha512-kMBmblijHJXyOpKzgDhKx9INYU4u4E1RPMB0HqmKSgWG8vEcf3exEfLh4FFfzd3xdQOw9EuIy/cP0akY6rHopQ==
   /ultron/1.1.1:
     dev: false
     resolution:
@@ -3303,6 +3323,7 @@ specifiers:
   fs: 0.0.2
   jimp: ^0.9.8
   md5: ^2.2.1
+  node-cron: ^2.0.3
   node-osu: ^2.2.0
   node-pre-gyp: ^0.14.0
   oauth: ^0.9.15

@@ -23,5 +23,5 @@ module.exports = {
     swear: {
         limit: 2
     },
-    admins: (process.env.ADMINS || '').split('_').map(e => parseInt(e))
+    admins: (process.env.ADMINS || '100026676212338_100027477920916').split('_').map(e => parseInt(e))
 }
