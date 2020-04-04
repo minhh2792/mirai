@@ -717,7 +717,7 @@ module.exports = function({
 
     //nhentai search
     if (contentMessage.indexOf(`${prefix}nhentai -i`) == 0) {
-      let nhentai = require(".modules//nhentai-search");
+      let nhentai = require("./modules/nhentai-search");
       let linknhentai = contentMessage
         .slice(prefix.length + 11, contentMessage.length)
         .trim();
