@@ -65,9 +65,11 @@ npm start
 Cám ơn vì đã tin tưởng bot của tớ <3 | nếu có lỗi gì xin vui lòng báo cáo ở link contact trên của mình nha <3
  
 **Previews**
+
 ![Preview](previews/preview1.png)
 
 ![Preview](previews/preview2.png)
 
 **Demo**
+
  Tai khoản bot: [Kẹo Sữa (Sumi-Chan)](https://facebook.com/Catalizcs.SumiChan)
