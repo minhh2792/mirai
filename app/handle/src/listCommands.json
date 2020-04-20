@@ -1,0 +1,303 @@
+[
+   {
+      "name":"help",
+      "decs":"Hướng dẫn cho người mới",
+      "usage":"!help [command]",
+      "example":"!help say",
+      "group":"general"
+   },
+   {
+      "name":"sumi",
+      "decs":"Gọi sumi",
+      "usage":"!sumi",
+      "example":"!sumi",
+      "group":"general"
+   },
+   {
+      "name":"lenny",
+      "decs":"( ͡° ͜ʖ ͡°)",
+      "usage":"!lenny",
+      "example":"!lenny",
+      "group":"general"
+   },
+   {
+      "name":"hug",
+      "decs":" (つ ͡° ͜ʖ ͡°)つ ",
+      "usage":"!hug",
+      "example":"!hug",
+      "group":"general"
+   },
+   {
+      "name":"mlem",
+      "decs":" ( ͡°👅 ͡°) ",
+      "usage":"!mlem",
+      "example":"!mlem",
+      "group":"general"
+   },
+   {
+      "name":"care",
+      "decs":" ¯\\_(ツ)_/¯ ",
+      "usage":"!care",
+      "example":"!care",
+      "group":"general"
+   },
+   {
+      "name":"report",
+      "decs":" Gửi thông tin lỗi đến admin hoặc yêu cầu sự giúp đỡ ",
+      "usage":"!report [Lỗi bạn cần phải báo cáo]",
+      "example":"!report bot không chạy được",
+      "group":"general"
+   },
+   {
+      "name":"wiki",
+      "decs":" tra khảo nội dung bạn cần tìm hiểu ",
+      "usage":"!wiko [en] [nội dung cần tìm hiểu] nếu sử dụng tiếng Việt không cần nhập en",
+      "example":"!wiki loài chó",
+      "group":"general"
+   },
+   {
+      "name":"ping url",
+      "decs":" Kiểm tra kết nối của bot đến url ",
+      "usage":"!ping url [url hoặc ip]",
+      "example":"!ping url facebook.com",
+      "group":"general"
+   },
+   {
+      "name":"ping",
+      "decs":" Tag toàn bộ thành viên trong nhóm cùng một lúc (Hạn chế sử dụng) ",
+      "usage":"!ping",
+      "example":"!ping",
+      "group":"general"
+   },
+   {
+      "name":"say",
+      "decs":" Điều khiển bot biến văn bản thành giọng đọc ",
+      "usage":"!say [en,ko,ru,jp] [Văn bản] nếu sử dụng tiếng việc thì phần language để trống",
+      "example":"!say Sumi-Chan xin chào tất cả mọi người",
+      "group":"general"
+   },
+   {
+      "name":"choose",
+      "decs":" chọn ngẫu nhiên trong các kết quả bạn đưa ",
+      "usage":"!choose [kết quả 1] : [kết quả 2] ",
+      "example":" !choose yêu : không yêu",
+      "group":"general"
+   },
+   {
+      "name":"echo",
+      "decs":" Điều khiển bot nói lại văn bản bạn viết ",
+      "usage":"!echo [văn bản hoặc nội dung]",
+      "example":"!echo Sumi-Chan xin chào",
+      "group":"general"
+   },
+   {
+      "name":"corona",
+      "decs":" Cập nhật tình hình covid-19 thế giới và Việt Nam nhanh nhất ",
+      "usage":"!corona",
+      "example":"!corona",
+      "group":"general"
+   },
+   {
+      "name":"weather",
+      "decs":" Kiểm tra thời tiết hiện tại ở khu vực thành phố bạn nhập ",
+      "usage":"!weather [Thành phố hoặc quốc gia]",
+      "example":"!weather Thành Phố Hồ Chí Minh",
+      "group":"general"
+   },
+   {
+      "name":"waifu",
+      "decs":" Thử vận may với Sumi-Chan ",
+      "usage":"!waifu",
+      "example":"!waifu",
+      "group":"general"
+   },
+   {
+      "name":"roll",
+      "decs":" Lấy con số may mắn của bạn, please đừng đi đánh đề :< ",
+      "usage":"!roll",
+      "example":"!roll",
+      "group":"general"
+   },
+   {
+      "name":"tát",
+      "decs":" tát vỡ mồm người bạn tag ",
+      "usage":"!tát [tag người cần tát]",
+      "example":"!tát @Sumi-Chan",
+      "group":"general"
+   },
+   {
+      "name":"osuinfo",
+      "decs":" Lấy thông tin ingame của bạn",
+      "usage":"!osuinfo -u [username]",
+      "example":"!osuinfo -u Fireseethedie1",
+      "group":"game"
+   },
+   {
+      "name":"rank",
+      "decs":" Lấy rank hiện tại của bạn trên hệ thống bot ",
+      "usage":"!rank",
+      "example":"!rank",
+      "group":"system"
+   },
+   {
+      "name":"anime get tag",
+      "decs":" Lấy toàn bộ tag mà bạn có thể sử dụng ",
+      "usage":"!anime [sfw, nsfw]",
+      "example":"!anime sfw",
+      "group":"general, nsfw"
+   },
+   {
+      "name":"anime",
+      "decs":" Lấy random ảnh mà tag bạn đã chọn, để lấy hướng dẫn về lấy tag sử dụng !help anime get tag ",
+      "usage":"!anime [tag]",
+      "example":"!anime neko",
+      "group":"general, nsfw"
+   },
+   {
+      "name":"youtube search",
+      "decs":" Tìm kiếm từ khoá của bạn ",
+      "usage":"!youtube -s [Từ khoá]",
+      "example":"!youtube -s why you are gay?",
+      "group":"media"
+   },
+   {
+      "name":"get video facebook",
+      "decs":" Lấy video từ link facebook ",
+      "usage":"!facebook -p [url hoặc link]",
+      "example":"!facebook -p https://www.facebook.com/...",
+      "group":"media"
+   },
+   {
+      "name":"get video youtube",
+      "decs":" Lấy video từ link youtube ",
+      "usage":"!youtube -p [url hoặc link]",
+      "example":"!youtube -p https://www.youtube.com/?watch=xxxyyyzzz",
+      "group":"media"
+   },
+   {
+      "name":"get audio youtube",
+      "decs":" Lấy âm thanh từ link hoặc url youtube ",
+      "usage":"!youtube -m [link hoặc url]",
+      "example":"!youtube -m https://www.youtube.com/?watch=xxxyyyzzz",
+      "group":"media"
+   },
+   {
+      "name":"cat",
+      "decs":" Lấy random ảnh về mèo ",
+      "usage":"!cat",
+      "example":"!cat",
+      "group":"general"
+   },
+   {
+      "name":"trans",
+      "decs":" Dịch văn bản bạn nhập ",
+      "usage":"!trans [văn bản] -> [vi, ru, ja], đây là toàn bộ ngôn ngữ hổ trợ: https://www.labnol.org/code/19899-google-translate-languages",
+      "example":"!trans hello world -> vi",
+      "group":"general"
+   },
+   {
+      "name":"quotes",
+      "decs":" Lấy châm ngôn sống của các bật thầy (không có Khá Bảnh hay Huấn Rose đâu) ",
+      "usage":"!quotes",
+      "example":"!quotes",
+      "group":"general"
+   },
+   {
+      "name":"nhentai random",
+      "decs":" Lấy code may mắn cho riêng bạn ( ͡° ͜ʖ ͡°)  ",
+      "usage":"!nhentai -r",
+      "example":"!nhentai -r",
+      "group":"general"
+   },
+   {
+      "name":"nhentai id",
+      "decs":" Lấy thông tin chuyện của bạn ( ͡° ͜ʖ ͡°)  ",
+      "usage":"!nhentai -i [id]",
+      "example":"!nhentai -i 177013",
+      "group":"nsfw"
+   },
+   {
+      "name":"math",
+      "decs":" Điều khiển bot khiến cho bot có thể làm toán  ",
+      "usage":"!math [phép toán]",
+      "example":"!math 1+1",
+      "group":"general"
+   },
+   {
+      "name":"đấm",
+      "decs":" Đấm người bạn tag  ",
+      "usage":"!đấm [tag người cần đấm]",
+      "example":"!đấm @Sumi-Chan",
+      "group":"general"
+   },
+   {
+      "name":"local",
+      "decs":" Lấy thông tin ip mà bạn nhập  ",
+      "usage":"!local [ip hoặc url]",
+      "example":"!local 192.168.1.1",
+      "group":"general"
+   },
+   {
+      "name":"sim",
+      "decs":" Trò chuyện cùng simsimi  ",
+      "usage":"!sim [nội dung]",
+      "example":"!sim hello",
+      "group":"general"
+   },
+   {
+      "name":"ban thread",
+      "decs":" ngưng nhận lệnh group mà bạn ban  ",
+      "usage":"!ban thread",
+      "example":"!ban thread",
+      "group":"admin"
+   },
+   {
+      "name":"ban",
+      "decs":" Ban người dùng  ",
+      "usage":"!ban [tag người dùng]",
+      "example":"!ban @Sumi-Chan",
+      "group":"admin"
+   },
+   {
+      "name":"unban",
+      "decs":" Unban người dùng  ",
+      "usage":"!unban [tag người dùng]",
+      "example":"!ban @Sumi-Chan",
+      "group":"admin"
+   },
+   {
+      "name":"unban thread",
+      "decs":" nhận lệnh group mà bạn đã ban  ",
+      "usage":"!unban thread",
+      "example":"!unban thread",
+      "group":"admin"
+   },
+   {
+      "name":"getname",
+      "decs":" lấy tên group thông qua id  ",
+      "usage":"!getname [id]",
+      "example":"!getname 123248329258",
+      "group":"admin"
+   },
+   {
+      "name":"update",
+      "decs":" Gửi văn tới toàn bộ group  ",
+      "usage":"!update [văn bản]",
+      "example":"!update alo alo",
+      "group":"admin"
+   },
+   {
+      "name":"boostrank",
+      "decs":" Thêm điểm vào hệ thống rank cho người đó  ",
+      "usage":"!boostrank [tag người cần boost] [số điểm]",
+      "example":"!boostrank @Sumi-Chan 1000",
+      "group":"admin"
+   },
+   {
+      "name":"resetrank",
+      "decs":" reset rank người bạn tag trở về con số 0  ",
+      "usage":"!reset [tag người cần reset]",
+      "example":"!reset @Sumi-Chan",
+      "group":"admin"
+   }
+]

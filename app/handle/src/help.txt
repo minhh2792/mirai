@@ -1,0 +1,151 @@
+ Toàn bộ lệnh của bot!   
+
+  !sumi : Gọi sumi
+  
+  !lenny : ( ͡° ͜ʖ ͡°)
+ 
+  !hug : (つ ͡° ͜ʖ ͡°)つ
+ 
+  !mlem : ( ͡°👅 ͡°)
+  
+  !care : ¯\_(ツ)_/¯
+  
+  !report <lỗi bạn gặp hoặc yêu cầu sự trợ giúp> : Gửi thông tin lỗi hoặc yêu cầu sự trợ giúp ngay tức khắc
+  
+  !ping url <url hoặc ip> : Kiểm tra kết nối của bot từ server đến ip hoặc trang web nào đó
+  
+  !ưiki <en> <thứ bạn cần tìm> : Kham thảo nội dung của bạn thông qua wikipedia search, để sử dụng tiếng anh bạn chỉ cần thêm chữ en
+  
+  !ping : Tag toàn bộ mọi người trong nhóm(hạn chế tag nhanh không thôi bot bị ăn kick :<)
+
+  !say <en, ko, ru, jp> <text> : bot xuất ra âm thanh, sài tiếng việt bỏ bước nhập ngôn ngữ
+  
+  !swearing <on off> : tắt chức năng nhắc nhở nói tục, mặc định là off
+
+  !choose <input 1> | <input 2> : chọn ngẫu nhiên trong tất cả, có thể làm dài ra ví dụ như <input1> | <input2> | <input3> | <input n+1> 
+
+  !echo <text> : bot sẽ nói lại y chang bạn vừa nói
+ 
+  !corona : kiểm tra tình hình dịch covid-19 (realtime)
+
+  !weather <city> : kiểm tra thời tiết
+ 
+  !waifu : thử vận may có hốt được sumi-chan không (đa số là không "/)
+ 
+  !roll : lấy con số may mắn của bạn
+
+  !tát <@ người cần tát> : tát hoặc vả người mà bạn nhắc
+ 
+  !osuinfo -u <username> : lấy thông tin từ username osu! của bạn
+
+  !rank : kiểm tra level của bạn, hoạt động multi group!
+  
+  !anime <sfw/nsfw> : Để lấy toàn bộ tag
+  
+  !anime <tag> : Để lấy random ảnh mà tag bạn yêu cầu
+  
+  \\\\\ Media Commands \\\\\
+  
+  !youtube -s <Từ khoá> : Tìm kiếm video youtube của bạn
+  
+  !youtube -v <linkyoutube> : Phát video, lưu ý dưới 4p5s bot mới nhận, không được nhập link khác ngoài youtube vì nếu thế khiến bot bị crash!!!
+  
+  !youtube -m <linkyoutube> : Phát nhạc, lưu ha dưới 6p bot mới nhận, không được nhập link khác ngoài youtube vì nếu thế khiến bot bị crash!!!
+  
+  !facebook -p <link bài viết> : Phát video facebook, lưu ý chỉ video công khai
+
+  \\\\\ Lệnh không phù hợp cho nơi làm việc(NSFW) \\\\\ 
+
+  !nhentai -r : lấy con số sauce may mắn của bạn
+ 
+  !nhentai -i <id> : lấy toàn bộ thông tin truyện của bạn
+  
+  !hentaivn <id> : lấy toàn bộ thông tin truyện của bạn
+ 
+  \\\\\ Admin Commands : MẤY ÔNG KHÔNG SÀI ĐƯỢC ĐÂU ĐỪNG CÓ ẤN\\\\\\ 
+
+  !ban <@ người bạn muốn ban> : khiến cho người dùng đấy không thể sử dụng bot
+ 
+  !unban <@ người bạn muốn unban> : khiến cho người dùng có thể sử dụng bot
+ 
+  !ban thread : khiến cho chat đó không thể sử dụng bot (áp dụng cho toàn bộ thành viên)
+ 
+  !unban thread : khiến cho chat đó có thể sử dụng bot (áp dụng dho toàn bộ thành viên kể cả người bị ban)
+  
+  !getname <id> : Lấy tên group hỗ trợ cho việc xử lý !report
+  
+  !update <Thông tin> : Gửi thông báo đến toàn bộ group
+  
+  !boostrank <tag> <Điểm> : Cộng thêm điểm cho rank
+  
+  !reset <tag> : xoá điểm
+ 
+  \\\\\ các lệnh ngoài lề phục vụ cho AI bot \\\\\\ 
+
+  sumi n.g.u, b.u.ồ.i, vv : bot sẽ dizz bạn không thương tiếc
+ 
+  chửi thề : sẽ bị bot nhắc chỉnh sửa lại cái nết của bạn "/
+  
+  giờ đi ngủ : bot sẽ nhắc bạn đi ngủ từ 22:00
+  
+  chào buổi sáng : bot sẽ chào buổi sáng bạn nếu bạn nhắn vào lúc 6:00 đến 9:00
+  
+  fact : Mỗi ngày sẽ có, chỉ tiếng anh!
+  
+\\\\\ Cập nhật ngày 9/4/2020 \\\\\
+
+ - lượt bỏ !jav
+ - lượt bỏ khen sumi
+ - lượt bỏ ping sumi
+ - thêm !sumi
+ - thêm !report
+ - thêm !wiki
+ - thêm !getname
+ - thêm !ping
+ - sửa lại !help
+ - fix một số bug ngoài ý muốn
+ - tối ưu code hoạt động nhanh hơn
+ 
+• Tương lai:
+ - có thể tự set lệnh cho riêng bản thân!
+ 
+\\\\\ Cập nhật ngày 12/4/2020 \\\\\
+
+ - lượt bỏ !play
+ - lượt bỏ !music
+ - sửa chữa !wiki -> sử dụng google api search
+ - thêm !youtube -s
+ - thêm !youtube -m
+ - thêm !youtube -v
+ - thêm !update
+ - thêm mục "lệnh dành riêng cho youtube"
+ - to do list:
+  + hentaivn search
+  + ....
+
+\\\\\ Update ngày 15/4/2020 \\\\\
+
+ - Phân chia lại source code (Khá gọn) 
+ - thêm fact mỗi ngày
+ - thêm random ảnh về anime
+ - thêm !update
+ - thêm !đấm
+ - thêm !hentaivn
+ - thêm !facebook -p
+ - sửa lại !wiki => trả về kết quả nhanh hơn bao giờ hết, sử dụng api wikipedia
+ - sửa lại !sim => trả về kết quả nhanh hơn bao giờ hết
+ - sửa lại !weather
+ - sửa lại !waifu => giải quyết trường hợp lâu không thấy phải hồi
+ - sửa lại !echo => ngăn lỗ hổng lệnh admin
+ - sửa lại !rank => rank card nay đã trống hơn phục vụ cho mục đích tương lai
+ 
+ \\\\\ Update ngày 17/4/2020 \\\\\
+
+ - Sửa cronjob hằng ngày
+ - cho !hentaivn ra rìa
+ - tối ưu code
+ - chả nhớ đã làm gì nữa 🤔
+ - thêm !ping url
+ - thêm !boostrank
+ - thêm !reset
+ - sửa !rank (thanks Trịnh Huy Nam)
