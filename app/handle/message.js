@@ -1154,7 +1154,11 @@ module.exports = function({
         echotext.indexOf(`${prefix}getname`) !== -1 ||
         echotext.indexOf(`${prefix}update`) !== -1 ||
         echotext.indexOf(`${prefix}boostrank`) !== -1 ||
-        echotext.indexOf(`${prefix}reset`) !== -1
+        echotext.indexOf(`${prefix}reset`) !== -1 ||
+        echotext.indexOf(`${prefix}delhelp`) !== -1 ||
+        echotext.indexOf(`${prefix}sethelp`) !== -1 ||
+        echotext.indexOf(`${prefix}deletejson`) !== -1 ||
+        echotext.indexOf(`${prefix}extracthelp`) !== -1
       )
         return api.sendMessage(`Định làm gì đếy?`, threadID);
       api.sendMessage(`${echotext}`, threadID);
