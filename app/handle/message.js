@@ -881,8 +881,8 @@ module.exports = function({
     if (contentMessage == `prefix`)
       return api.sendMessage("Prefix is: !", threadID);
       
-    if (contentMessage.indexOf(credits) !== -1)
-      return api.sendMessage('Project Sumi-chan-bot được thực hiện bởi:\n SpermLord: https://www.facebook.com/LiterallyASperm \n CatalizCS: https://www.facebook.com/Cataliz2k\n Full source code at: https://github.com/roxtigger2003/Sumi-chan-bot#readme !'threadID);
+    if (contentMessage.indexOf('credits') !== -1)
+      return api.sendMessage('Project Sumi-chan-bot được thực hiện bởi:\n SpermLord: https://www.facebook.com/LiterallyASperm \n CatalizCS: https://www.facebook.com/Cataliz2k\n Full source code at: https://github.com/roxtigger2003/Sumi-chan-bot#readme !', threadID);
 
     //simsimi
     if (contentMessage.indexOf(`${prefix}sim`) == 0) {
