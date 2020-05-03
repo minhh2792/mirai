@@ -1,0 +1,6 @@
+** Nếu bot của bạn có dùng kí tự đặc biệt làm lệnh như: #<tin nhắn> **
+* Thì hãy làm các bước sau:
+1. Vào app/handle/src/cmds.json và thêm kí tự đó vào cmds
+VD: {"cmds":[..."kéo","búa","bao"]...} thì bạn hãy thêm lệnh đó vào ngay sau "bao"
+-> {"cmds":[..."kéo","búa","bao","kí tự đặc biệt"]...}
+2. Vào app/handle/message.js và tìm 2 lệnh unban command và ban command rồi làm theo các bước có trong đấy.

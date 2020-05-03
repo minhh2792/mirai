@@ -1,11 +1,11 @@
 {
   "name": "Sumichan",
-  "version": "2.0.7",
+  "version": "3.2.5",
   "description": "I am Sumi-chan - A facebook messenger bot",
   "main": "index.js",
   "scripts": {
     "loginfb": "node login.js",
-    "start": "pm2 start index.js --no-daemon --exp-backoff-restart-delay=100"
+    "start": "pm2 start index.js --no-daemon --exp-backoff-restart-delay=100 --restart-delay 100"
   },
   "repository": {
     "type": "git",
@@ -15,22 +15,24 @@
     "bot",
     "facebook",
     "sumichan",
-    "messenger",
-    "AI"
+    "messenger"
   ],
-  "author": "roxtigger2003",
+  "author": "roxtigger2003 & SpermLord",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/roxtigger2003/sumi-chan-bot/issues"
   },
   "homepage": "https://github.com/roxtigger2003/sumi-chan-bot#readme",
   "engines": {
-    "npm": "12.0.0"
+    "npm": "10.12"
   },
   "dependencies": {
     "@dpmcmlxxvi/randomfacts": "^0.2.0",
+    "axios": "^0.19.2",
+    "canvas": "^2.6.1",
     "chalk": "^4.0.0",
     "cheerio": "^1.0.0-rc.3",
+    "city-timezones": "^1.2.0",
     "dotenv": "^8.2.0",
     "ejs": "^3.0.2",
     "express": "^4.17.1",
@@ -40,6 +42,7 @@
     "fca-unofficial": "^1.1.10",
     "file-type": "^14.1.4",
     "fluent-ffmpeg": "^2.1.2",
+    "@ffmpeg-installer/ffmpeg": "^1.0.20",
     "fs": "0.0.2",
     "jimp": "^0.10.2",
     "jsdom": "^16.2.2",
@@ -49,6 +52,7 @@
     "node-osu": "^2.2.0",
     "node-pre-gyp": "^0.14.0",
     "oauth": "^0.9.15",
+    "os-utils": "0.0.14",
     "pg": "^8.0.2",
     "pg-hstore": "^2.3.3",
     "pm2": "^4.2.3",
@@ -61,6 +65,7 @@
     "steam-user": "^4.13.2",
     "text2png": "^2.3.0",
     "wikijs": "^6.0.1",
+    "parse-ms": "^2.1.0",
     "xmlhttprequest": "^1.8.0",
     "ytdl-core": "^2.0.1"
   },

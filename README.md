@@ -1,6 +1,6 @@
 # Sumi-chan-bot (Thuộc project Sumi-Chan-Bot)
 
-**Bot Sumi-chan Version 3.0.0 (Hoạt động tốt hơn trên glitch)**
+## Bot Sumi-chan Version 3.2.5 (Hoạt động tốt hơn trên các server linux)
 
 Yêu cầu để có thể sử dụng bot:
 
@@ -12,14 +12,15 @@ Yêu cầu để có thể sử dụng bot:
 
 # Hướng dẫn cài đặt
 
-•Step 1: bạn phải clone hoặc download Sumi-chan này về, nếu máy bạn có git hãy sử dụng lệnh:
++ Step 1: bạn phải clone hoặc download Sumi-chan này về, nếu máy bạn có git hãy sử dụng lệnh:
 ```
 git clone https://github.com/roxtigger2003/Sumi-chan-bot
 ```
 hoặc ở trên góc phải có nút xanh ghi là clone or download bạn nhấn vào chọn download zip là nó tự download file zip về và unzip ra nha :3
+
 ![Preview](previews/github_download.png)
 
-•Step 2: hãy trỏ cmd hoặc terminal về thư mục bot bằng lệnh: 
++ Step 2: hãy trỏ cmd hoặc terminal về thư mục bot bằng lệnh: 
 ```
 cd <thư mục chứa bot>
 ```
@@ -29,27 +30,31 @@ cmd
 ```
 ![Preview](previews/cmd.png)
 
-•Step 3: sau khi bạn trỏ cmd hoặc terminal về thư mục bot bạn hãy gõ vào cmd hoặc terminal:
++ Step 3: sau khi bạn trỏ cmd hoặc terminal về thư mục bot bạn hãy gõ vào cmd hoặc terminal:
 ```
 npm install
 ```
 Và đợi cho nó chạy!
 
-•Step 4: trong lúc nó đang cài đặt modules cho bot, bạn có thể chỉnh sửa và thiết lập cho bot trong:
++ Step 4: trong lúc nó đang cài đặt modules cho bot, bạn có thể chỉnh sửa và thiết lập cho bot trong:
 ```
 login.js và config/index.js ngay phần login bạn phải chỉnh sửa email và password trong const obj để lấy appstate cho bot, và chỉnh sửa thông tin trong phần config/index.js
 ```
 
-•Step 5: sau khi bạn chỉnh sửa, thiếp lập cho bot thì cũng là lúc các modules cài đặt thành công bạn hãy gõ vào cmd hoặc terminal:
++ Step 5: sau khi bạn chỉnh sửa, thiếp lập cho bot thì cũng là lúc các modules cài đặt thành công bạn hãy gõ vào cmd hoặc terminal:
 ```
 node login.js và sau đó nhập mã xác thực 2 lớp
 ```
 
-•Step 6: sau khi node login.js và nhập mã thành công, cmd hoặc terminal sẽ xuất ra 1 dòng rất dài báo hiệu là appstate đã ghi thành công thì bạn đã có thể khởi động bot bằng cách gõ: 
++ Step 6: sau khi node login.js và nhập mã thành công, cmd hoặc terminal sẽ xuất ra 1 dòng rất dài báo hiệu là appstate đã ghi thành công thì bạn đã có thể khởi động bot bằng cách gõ: 
 ```
 npm start
 ```
 Đến đây bot đã hoạt động rồi đấy :3
+
+*Mỗi khi add bot vào group mới, hãy dùng lệnh **{prefix}getids** (với **{prefix}** là dấu lệnh bạn đặt cho bot trong config/index.js) để cronjob của bot có thể hoạt động*
+
+*Không nên dùng **Kí tự đặc biệt** trong lệnh của bot, nếu có hãy đọc hết hướng dẫn trong app/handle/specialcharacter.txt*
 
 **Credits**
 
