@@ -1762,9 +1762,7 @@ module.exports = function({
 					request(thumbnails).pipe(fs.createWriteStream(__dirname + `/src/thumbnails.png`)).on("close", callback);
 				});
 			}
-			else getVideo(content);
-
-			function getVideo(content) {
+			else {
 				ytdl.getInfo(content, function(err, info) {
 					if (err) return api.sendMessage('link youtube không hợp lệ!', threadID, messageID);
 					if (info.length_seconds > 360)
@@ -1775,11 +1773,9 @@ module.exports = function({
 							body: "",
 							attachment: fs.createReadStream(__dirname + "/src/video.mp4")
 						};
-						api.sendMessage(up, threadID, () => {
-							fs.unlinkSync(__dirname + "/src/video.mp4");
-						});
+						api.sendMessage(up, threadID, () => fs.unlinkSync(__dirname + "/src/video.mp4"));
 					};
-					media.youtubeMusic(content, callback);
+					media.youtubeVideo(content, callback);
 				});
 			};
 			return;
@@ -1811,9 +1807,7 @@ module.exports = function({
 							() => {
 								api.sendMessage(up, threadID, () => {
 									fs.unlinkSync(__dirname + "/src/thumbnails.png");
-									api.sendMessage(content, threadID, () => {
-										getMusic(content);
-									});
+									api.sendMessage(content, threadID, () => getMusic(content));
 								});
 							},
 							messageID
@@ -1822,8 +1816,7 @@ module.exports = function({
 					request(thumbnails).pipe(fs.createWriteStream(__dirname + `/src/thumbnails.png`)).on("close", callback);
 				});
 			}
-			else getMusic(content);
-			function getMusic(content) {
+			else {
 				ytdl.getInfo(content, function(err, info) {
 					if (err) return api.sendMessage('link youtube không hợp lệ!', threadID, messageID);
 					if (info.length_seconds > 360) return api.sendMessage("Độ dài video vượt quá mức cho phép, tối thiểu là 6 phút!", threadID, messageID);
