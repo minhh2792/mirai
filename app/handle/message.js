@@ -431,7 +431,7 @@ module.exports = function({
 				var helpMe = JSON.parse(data);
 				if (helpMe.some(item => item.name == content)) {
 					api.sendMessage(
-						`Thông tin lệnh bạn đang tìm: \n - tên: ${}
+						`Thông tin lệnh bạn đang tìm: \n - tên: ${helpMe.find(item => item.name == content).name}
 						- Thông tin: ${helpMe.find(item => item.name == content).decs}
 						- usage:  ${prefix + helpMe.find(item => item.name == content).usage}
 						- Hướng dẫn sử dụng: ${prefix + helpMe.find(item => item.name == content).example}
@@ -1314,6 +1314,46 @@ module.exports = function({
 			}, (error) => console.log(error));
 		}
 
+		//javsearch
+		if (contentMessage.indexOf(`${prefix}javsearch`) == 0) {
+			var content = contentMessage.slice(prefix.length + 10, contentMessage.length);
+			return request({
+				uri: encodeURI('https://jav-rest-api-htpvmrzjet.now.sh/api/actress?name=' + content)
+			},
+			function (err, response, body) {
+				if (err) return api.sendMessage(`Đã có lỗi xảy ra!`, threadID, messageID);
+				var dataBody = JSON.parse(body);
+				var count = dataBody['result'];
+				api.sendMessage('ID | Actress Name', threadID, () => {
+					for (var i = 0; i < count.length; i++) {
+						let actress_id = dataBody['result'][i]['id'];
+						let actress_name = dataBody['result'][i]['name'];
+						api.sendMessage(actress_id + ' | ' + actress_name, threadID);
+					}
+				}, messageID);
+			});
+		}
+
+		//javcode
+		if (contentMessage.indexOf(`${prefix}javcode`) == 0) {
+			var content = contentMessage.slice(prefix.length + 8, contentMessage.length);
+			return request({
+				uri: encodeURI('https://jav-rest-api-htpvmrzjet.now.sh/api/videos/' + content)
+			},
+			function (err, response, body) {
+				if (err) return api.sendMessage(`Đã có lỗi xảy ra!`, threadID, messageID);
+				var dataBody = JSON.parse(body);
+				var count = 20;
+				api.sendMessage('code', threadID, () => {
+					for (var i = 0; i < count; i++) {
+						var siteUrl = dataBody['result'][i]['siteUrl'];
+						var video_code = siteUrl.substring(siteUrl.lastIndexOf("/") - 9).replace("/", "").replace("=", "").toUpperCase();
+						api.sendMessage(video_code, threadID);
+					}
+				}, messageID);
+			});
+		}
+
 		/* ==================== Game Commands ==================== */
 
 		//lấy thông tin osu!
@@ -1328,17 +1368,17 @@ module.exports = function({
 			osuApi.apiCall("/get_user", { u: username }).then(user => {
 				api.sendMessage(
 					`OSU INFO\n - username : ` +
-						user[0].username +
-						`\n - level :` +
-						user[0].level +
-						`\n - playcount :` +
-						user[0].playcount +
-						`\n - CountryRank : ` +
-						user[0].pp_country_ran +
-						`\n - Total PP* : ` +
-						user[0].pp_raw +
-						`\n - Hit Accuracy :` +
-						user[0].accuracy,
+					user[0].username +
+					`\n - level :` +
+					user[0].level +
+					`\n - playcount :` +
+					user[0].playcount +
+					`\n - CountryRank : ` +
+					user[0].pp_country_ran +
+					`\n - Total PP* : ` +
+					user[0].pp_raw +
+					`\n - Hit Accuracy :` +
+					user[0].accuracy,
 					threadID,
 					messageID
 				);
@@ -1366,27 +1406,27 @@ module.exports = function({
 						var data = json.playerstats.stats;
 						api.sendMessage(
 							"Thông tin ingame: \n - Tên: " +
-								json.playerstats.gameName +
-								"\n - Số kill đạt được: " +
-								data.find(item => item.name == "total_kills").value +
-								" \n - Số lần đã chết: " +
-								data.find(item => item.name == "total_deaths").value +
-								"\n - kd: " +
-								(data[0]["value"] / data[1]["value"]).toFixed(2) +
-								"\n - thời gian đã chơi trong mm: " +
-								Math.floor(data.find(item => item.name == "total_time_played").value / 60 / 60) +
-								" hours\n - Số lần đã đặt bomb: " +
-								data.find(item => item.name == "total_planted_bombs").value +
-								"\n - Số lần đã gỡ bomb: " +
-								data.find(item => item.name == "total_defused_bombs").value +
-								"\n - Số round đã thắng: " +
-								data.find(item => item.name == "total_wins").value +
-								"\n - Số lần mvp: " +
-								data.find(item => item.name == "total_mvps").value +
-								"\n - Số match đã chơi: " +
-								data.find(item => item.name == "total_matches_played").value +
-								"\n -Số match đã thắng: " +
-								data.find(item => item.name == "total_matches_won").value,
+							json.playerstats.gameName +
+							"\n - Số kill đạt được: " +
+							data.find(item => item.name == "total_kills").value +
+							"\n - Số lần đã chết: " +
+							data.find(item => item.name == "total_deaths").value +
+							"\n - kd: " +
+							(data[0]["value"] / data[1]["value"]).toFixed(2) +
+							"\n - thời gian đã chơi trong mm: " +
+							Math.floor(data.find(item => item.name == "total_time_played").value / 60 / 60) +
+							" hours\n - Số lần đã đặt bomb: " +
+							data.find(item => item.name == "total_planted_bombs").value +
+							"\n - Số lần đã gỡ bomb: " +
+							data.find(item => item.name == "total_defused_bombs").value +
+							"\n - Số round đã thắng: " +
+							data.find(item => item.name == "total_wins").value +
+							"\n - Số lần mvp: " +
+							data.find(item => item.name == "total_mvps").value +
+							"\n - Số match đã chơi: " +
+							data.find(item => item.name == "total_matches_played").value +
+							"\n -Số match đã thắng: " +
+							data.find(item => item.name == "total_matches_won").value,
 							threadID, messageID
 						);
 					}
@@ -1581,13 +1621,13 @@ module.exports = function({
 				}
 
 				let random = Math.floor(Math.random() * 37);
-				if (isNaN(money)|| money.indexOf("-") !== -1) 
+				if (isNaN(money)|| money.indexOf("-") !== -1)
 					return api.sendMessage(`số tiền đặt cược của bạn không phải là một con số, vui lòng xem lại cách sử dụng tại !help roul`, threadID, messageID);
-				if (!money || !color) 
+				if (!money || !color)
 					return api.sendMessage("Sai format", threadID, messageID);
-				if (money > moneydb) 
+				if (money > moneydb)
 					return api.sendMessage(`Số tiền của bạn không đủ`, threadID, messageID);
-				if (50 > money) 
+				if (money < 50)
 					return api.sendMessage(`Số tiền đặt cược của bạn quá nhỏ, tối thiểu là 50 đô!`, threadID, messageID);
 				if (color == "b" || color.includes("black")) color = 0;
 				else if (color == "r" || color.includes("red")) color = 1;
@@ -1633,7 +1673,7 @@ module.exports = function({
 					return api.sendMessage("chưa nhập số tiền đặt cược!", threadID, messageID);
 				if (money > moneydb)
 					return api.sendMessage(`Số tiền của bạn không đủ`, threadID, messageID);
-				if (50 > money) 
+				if (money < 50) 
 					return api.sendMessage(`Số tiền đặt cược của bạn quá nhỏ, tối thiểu là 50 đô!`, threadID, messageID);
 
 				let number = [];
