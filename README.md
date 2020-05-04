@@ -1,6 +1,10 @@
 # Sumi-chan-bot (Thuộc project Sumi-Chan-Bot)
 
-## Bot Sumi-chan Version 3.2.5 (Hoạt động tốt hơn trên các server linux)
+## Bot Sumi-chan Version 3.2.6 (Hoạt động tốt hơn trên các server linux)
+
+*Mỗi khi add bot vào group mới, hãy dùng lệnh **{prefix}getids** (với **{prefix}** là dấu lệnh bạn đặt cho bot trong config/index.js) để cronjob của bot có thể hoạt động*
+
+*Không nên dùng **Kí tự đặc biệt** trong lệnh của bot, nếu có hãy làm theo hướng dẫn trong app/handle/specialcharacter.txt*
 
 Yêu cầu để có thể sử dụng bot:
 
@@ -51,10 +55,6 @@ node login.js và sau đó nhập mã xác thực 2 lớp
 npm start
 ```
 Đến đây bot đã hoạt động rồi đấy :3
-
-*Mỗi khi add bot vào group mới, hãy dùng lệnh **{prefix}getids** (với **{prefix}** là dấu lệnh bạn đặt cho bot trong config/index.js) để cronjob của bot có thể hoạt động*
-
-*Không nên dùng **Kí tự đặc biệt** trong lệnh của bot, nếu có hãy đọc hết hướng dẫn trong app/handle/specialcharacter.txt*
 
 **Credits**
 
