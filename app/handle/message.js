@@ -1501,16 +1501,30 @@ module.exports = function({
 		//balance
 		if (contentMessage.indexOf(`${prefix}balance`) == 0) {
 			var content = contentMessage.slice(prefix.length + 8, contentMessage.length);
+			var mention = Object.keys(event.mentions)[0];
 			if (!content)
 				return economy.getMoney(senderID).then(function(moneydb) {
 					api.sendMessage(`Số tiền của bạn hiện đang có là: ${moneydb} đô`, threadID, messageID);
 				});
 			else if (content.indexOf("@") !== -1) {
-				for (var i = 0; i < Object.keys(event.mentions).length; i++) {
-					economy.getMoney(Object.keys(event.mentions)[i]).then(function(moneydb) {
-						api.sendMessage(`Số tiền của ${content} hiện đang có là: ${moneydb} đô`, threadID, messageID);
+				economy.getMoney(mention).then(function(moneydb) {
+					api.sendMessage(
+					{
+						body: `Số tiền của ${event.mentions[mention].replace("@", "")} hiện đang có là: ${moneydb} đô.`,
+						mentions: [
+							{
+								tag: event.mentions[mention].replace("@", ""),
+								id: mention
+							}
+						]
+					},
+					threadID,
+					() => {
+						economy.setMoney(mention, parseInt(moneyPay));
+					},
+					messageID
+				);
 					});
-				}
 				return;
 			}
 			else if (!isNaN(content))
@@ -1738,30 +1752,27 @@ module.exports = function({
 		return;
 		}
 
-		//pay command
-		if (contentMessage.indexOf(`${prefix}setmoney` && admins.includes(senderID)) == 0) {
+		//setmoney command
+		if (contentMessage.indexOf(`${prefix}setmoney`) == 0 && admins.includes(senderID)) {
 			var mention = Object.keys(event.mentions)[0];
-			var content = contentMessage.slice(prefix.length + 4,contentMessage.length);
+			var content = contentMessage.slice(prefix.length + 9,contentMessage.length);
 			var moneyPay = content.substring(content.lastIndexOf(" ") + 1);
-
-			economy.getMoney(senderID).then((moneydb) => {
-				api.sendMessage(
-					{
-						body: `Bạn đã sửa tiền của ${event.mentions[mention].replace("@", "")} thành ${moneyPay} đô.`,
-						mentions: [
-							{
-								tag: event.mentions[mention].replace("@", ""),
-								id: mention
-							}
-						]
-					},
-					threadID,
-					() => {
-						economy.setMoney(mention, parseInt(moneyPay));
-					},
-					messageID
-				);
-			});
+			api.sendMessage(
+				{
+					body: `Bạn đã sửa tiền của ${event.mentions[mention].replace("@", "")} thành ${moneyPay} đô.`,
+					mentions: [
+						{
+							tag: event.mentions[mention].replace("@", ""),
+							id: mention
+						}
+					]
+				},
+				threadID,
+				() => {
+					economy.setMoney(mention, parseInt(moneyPay));
+				},
+				messageID
+			);
 		return;
 		}
 
