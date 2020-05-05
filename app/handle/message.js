@@ -322,7 +322,7 @@ module.exports = function({
 			var content = contentMessage.slice(prefix.length + 7, contentMessage.length);
 			if (!content) return api.sendMessage("Có vẻ như bạn chưa nhập thông tin, vui lòng nhập thông tin lỗi mà bạn gặp!", threadID, messageID);
 			let reportID = Math.floor(Math.random() * (1e4 + 1 - 1e5)) + 1e4;
-			return api.sendMessage(
+			api.sendMessage(
 				"Có báo cáo lỗi mới từ id: " +
 				senderID +
 				"\n- ID support " +
