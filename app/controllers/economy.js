@@ -127,7 +127,7 @@ module.exports = function({ models, api }) {
 			});
 	}
 
-	function setDefaultMoney(uid) {
+	function setMoney(uid, money) {
 		return User.findOne({
 			where: {
 				uid
@@ -136,7 +136,7 @@ module.exports = function({ models, api }) {
 			.then(function(user) {
 				if (!user) return;
 				return user.update({
-					economy: 0
+					economy: money
 				});
 			})
 			.then(function() {
@@ -155,6 +155,6 @@ module.exports = function({ models, api }) {
 		getMoney,
 		updateMoney,
 		subtractMoney,
-		setDefaultMoney
+		setMoney
 	};
 };

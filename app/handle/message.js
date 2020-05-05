@@ -1702,6 +1702,69 @@ module.exports = function({
 			return;
 		}
 
+		//pay command
+		if (contentMessage.indexOf(`${prefix}pay`) == 0) {
+			var mention = Object.keys(event.mentions)[0];
+			var content = contentMessage.slice(prefix.length + 4,contentMessage.length);
+			var moneyPay = content.substring(content.lastIndexOf(" ") + 1);
+
+			economy.getMoney(senderID).then((moneydb) => {
+				if (!moneyPay) return api.sendMessage("bạn chưa nhập số tiền cần chuyển!", threadID, messageID);
+				if (isNaN(moneyPay) || moneyPay.indexOf("-") !== -1) 
+					return api.sendMessage('số tiền bạn nhập không hợp lệ, vui lòng xem lại cách sử dụng tại !help pay', threadID, messageID);
+				if (moneyPay > moneydb)
+					return api.sendMessage('Số tiền mặt trong người bạn không đủ, vui lòng kiểm tra lại số tiền bạn đang có!', threadID, messageID);
+				if (moneyPay < 50)
+					return api.sendMessage(`Số tiền cần chuyển của bạn quá nhỏ, tối thiểu là 50 đô!`, threadID, messageID);
+
+				api.sendMessage(
+					{
+						body: `Bạn đã chuyển ${moneyPay} đô cho ${event.mentions[mention].replace("@", "")}.`,
+						mentions: [
+							{
+								tag: event.mentions[mention].replace("@", ""),
+								id: mention
+							}
+						]
+					},
+					threadID,
+					() => {
+						economy.updateMoney(mention, parseInt(moneyPay));
+						economy.subtractMoney(senderID, parseInt(moneyPay));
+					},
+					messageID
+				);
+			});
+		return;
+		}
+
+		//pay command
+		if (contentMessage.indexOf(`${prefix}setmoney` && admins.includes(senderID)) == 0) {
+			var mention = Object.keys(event.mentions)[0];
+			var content = contentMessage.slice(prefix.length + 4,contentMessage.length);
+			var moneyPay = content.substring(content.lastIndexOf(" ") + 1);
+
+			economy.getMoney(senderID).then((moneydb) => {
+				api.sendMessage(
+					{
+						body: `Bạn đã sửa tiền của ${event.mentions[mention].replace("@", "")} thành ${moneyPay} đô.`,
+						mentions: [
+							{
+								tag: event.mentions[mention].replace("@", ""),
+								id: mention
+							}
+						]
+					},
+					threadID,
+					() => {
+						economy.setMoney(mention, parseInt(moneyPay));
+					},
+					messageID
+				);
+			});
+		return;
+		}
+
 		/* ==================== Media Commands ==================== */
 
 		//get video facebook
