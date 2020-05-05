@@ -14,7 +14,7 @@ const option = {
 	//* cách lấy userAgent: F12-> tab console gõ 'naigator.userAgent' Link: https://imgur.com/oQ5hUkH
 };
 
-// edit email với password ở bên dưới!
+//Edit email với password ở bên dưới!
 const obj = {
 	email: "Điền Email",
 	password: "Điền Mật Khẩu"

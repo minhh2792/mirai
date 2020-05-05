@@ -1756,7 +1756,9 @@ module.exports = function({
 		if (contentMessage.indexOf(`${prefix}setmoney`) == 0 && admins.includes(senderID)) {
 			var mention = Object.keys(event.mentions)[0];
 			var content = contentMessage.slice(prefix.length + 9,contentMessage.length);
+			var sender = content.slice(0, content.lastIndexOf(" "));
 			var moneyPay = content.substring(content.lastIndexOf(" ") + 1);
+			if (!mention && sender == 'me') return api.sendMessage("Đã sửa tiền của bản thân thành " + moneyPay, threadID, () => economy.setMoney(senderID, parseInt(moneyPay)), messageID);
 			api.sendMessage(
 				{
 					body: `Bạn đã sửa tiền của ${event.mentions[mention].replace("@", "")} thành ${moneyPay} đô.`,
@@ -1768,9 +1770,7 @@ module.exports = function({
 					]
 				},
 				threadID,
-				() => {
-					economy.setMoney(mention, parseInt(moneyPay));
-				},
+				() => economy.setMoney(mention, parseInt(moneyPay)),
 				messageID
 			);
 		return;

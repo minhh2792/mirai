@@ -4,7 +4,7 @@ module.exports = function ({ api, modules, config, __GLOBAL }) {
 			case "log:subscribe":
 				let addedUserInfo = event.logMessageData.addedParticipants[0];
 				if (addedUserInfo.userFbId == api.getCurrentUserID()) {
-					api.sendMessage("Đã kết nối thành công!\n Vui lòng sử dụng !help all để biết thêm chi tiết lệnh >w<", event.threadID);
+					api.sendMessage("Đã kết nối thành công!\nVui lòng sử dụng !help all để biết thêm chi tiết lệnh >w<", event.threadID);
 					api.changeNickname(config.botName, event.threadID, api.getCurrentUserID(), (err) => {
 						if (err) return modules.log(err, 2);
 					});
