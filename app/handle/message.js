@@ -171,8 +171,7 @@ module.exports = function({
 
 			fs.readFile(__dirname + "/src/cmds.json", "utf-8", (err, data) => {
 				var jsonData = JSON.parse(data);
-				if (!jsonData.cmds.includes(content))
-					return api.sendMessage("Không có lệnh " + content + " nên không thể cấm",threadID);
+				if (!jsonData.cmds.includes(content)) return api.sendMessage("Không có lệnh " + content + " trong cmds.json nên không thể cấm",threadID);
 				else {
 					if (jsonData.banned.some(item => item.id == threadID)) {
 						let getThread = jsonData.banned.find(item => item.id == threadID);
