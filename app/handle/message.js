@@ -321,16 +321,17 @@ module.exports = function({
 		if (contentMessage.indexOf(`${prefix}report`) == 0) {
 			var content = contentMessage.slice(prefix.length + 7, contentMessage.length);
 			if (!content) return api.sendMessage("Có vẻ như bạn chưa nhập thông tin, vui lòng nhập thông tin lỗi mà bạn gặp!", threadID, messageID);
-			api.sendMessage(
+			let reportID = Math.floor(Math.random() * (1e4 + 1 - 1e5)) + 1e4;
+			return api.sendMessage(
 				"Có báo cáo lỗi mới từ id: " +
 				senderID +
 				"\n- ID support " +
-				Math.floor(Math.random() * (1e4 + 1 - 1e5)) + 1e4 +
+				reportID +
 				"\n- ThreadID gặp lỗi: " +
 				threadID +
 				"\n- Lỗi gặp phải: " +
 				content +
-				"\n- lỗi được thông báo vào lúc: " +
+				"\n- Lỗi được thông báo vào lúc: " +
 				moment.tz("Asia/Ho_Chi_Minh").format("HH:mm:ss"),
 				admins[0]
 			);
