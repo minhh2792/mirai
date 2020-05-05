@@ -355,6 +355,20 @@
       "usage":"coinflip",
       "example":"coinflip",
       "group":"economy"
+   },
+   {
+      "name":"pay",
+      "decs":"chuyển một số tiền cho người mà bạn tag :))",
+      "usage":"pay [tag người nhận] [số tiền muốn chuyển]",
+      "example":"pay @Sumi-Chan 500",
+      "group":"economy"
+   },
+   {
+      "name":"sl",
+      "decs":"đánh bạc bằng hình thức hoa quả",
+      "usage":"sl [số tiền bạn muốn cá cược]",
+      "example":"sl 500",
+      "group":"economy"
    }
    
 ]
