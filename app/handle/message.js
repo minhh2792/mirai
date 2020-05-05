@@ -1519,9 +1519,6 @@ module.exports = function({
 						]
 					},
 					threadID,
-					() => {
-						economy.setMoney(mention, parseInt(moneyPay));
-					},
 					messageID
 				);
 					});
@@ -1758,21 +1755,27 @@ module.exports = function({
 			var content = contentMessage.slice(prefix.length + 9,contentMessage.length);
 			var sender = content.slice(0, content.lastIndexOf(" "));
 			var moneyPay = content.substring(content.lastIndexOf(" ") + 1);
-			if (!mention && sender == 'me') return api.sendMessage("Đã sửa tiền của bản thân thành " + moneyPay, threadID, () => economy.setMoney(senderID, parseInt(moneyPay)), messageID);
-			api.sendMessage(
-				{
-					body: `Bạn đã sửa tiền của ${event.mentions[mention].replace("@", "")} thành ${moneyPay} đô.`,
-					mentions: [
-						{
-							tag: event.mentions[mention].replace("@", ""),
-							id: mention
-						}
-					]
-				},
-				threadID,
-				() => economy.setMoney(mention, parseInt(moneyPay)),
-				messageID
-			);
+			economy.getMoney(senderID).then((moneydb) => {
+				if (isNaN(moneyPay))
+					return api.sendMessage('số tiền cần set của bạn không phải là 1 con số!!', threadID, messageID);
+				if (moneydb == undefined)
+					return api.sendMessage('user cần set chưa tồn tại trên hệ thống dữ liệu!', threadID, messageID);
+				if (!mention && sender == 'me') return api.sendMessage("Đã sửa tiền của bản thân thành " + moneyPay, threadID, () => economy.setMoney(senderID, parseInt(moneyPay)), messageID);
+				api.sendMessage(
+					{
+						body: `Bạn đã sửa tiền của ${event.mentions[mention].replace("@", "")} thành ${moneyPay} đô.`,
+						mentions: [
+							{
+								tag: event.mentions[mention].replace("@", ""),
+								id: mention
+							}
+						]
+					},
+					threadID,
+					() => economy.setMoney(mention, parseInt(moneyPay)),
+					messageID
+				);
+			});
 		return;
 		}
 
