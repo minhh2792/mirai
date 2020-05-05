@@ -1,6 +1,6 @@
 # Sumi-chan-bot (Thuộc project Sumi-Chan-Bot)
 
-## Bot Sumi-chan Version 3.3.2 (Hoạt động tốt hơn trên các server linux)
+## Bot Sumi-chan Version 3.3.3 (Hoạt động tốt hơn trên các server linux)
 
 *Mỗi khi add bot vào group mới, hãy dùng lệnh **{prefix}getids** (với **{prefix}** là dấu lệnh bạn đặt cho bot trong config/index.js) để cronjob của bot có thể hoạt động*
 

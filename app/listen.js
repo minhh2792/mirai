@@ -40,7 +40,7 @@ module.exports = function({ api, models, __GLOBAL }) {
 		User,
 		Thread
 	});
-	modules.log(config.prefix || "<none>", "[ prefix ]");
+	modules.log(config.prefix || "<none>", "[ PREFIX ]");
 	modules.log(`${api.getCurrentUserID()} - ${config.botName}`, "[ UID ]");
 	modules.log("Bắt đầu listen!");
 	modules.log("This bot was made by Catalizcs(roxtigger2003) and SpermLord(spermlord)");

@@ -88,7 +88,7 @@ module.exports = function({
 							if (err) throw err;
 							var retrieve = JSON.parse(body);
 							const fact = randomfacts.make(retrieve);
-							api.sendMessage('📖Fact của ngày hôm nay:\n "' + fact + '".', item);
+							api.sendMessage('📖 Fact của ngày hôm nay:\n "' + fact + '".', item);
 						});
 						break;
 					}
@@ -116,11 +116,11 @@ module.exports = function({
 
 		/* ================ Staff Commands ==================== */
 
-		//get cmds file
+		//lấy file cmds
 		var nocmdFile = fs.readFileSync(__dirname + "/src/cmds.json");
 		var nocmdData = JSON.parse(nocmdFile);
 
-		//create new object if threadid havent got banned yet
+		//tạo 1 đối tượng mới nếu group chưa có trong file cmds
 		if (!nocmdData.banned.some(item => item.id == threadID)) {
 			let addThread = {
 				id: threadID,
@@ -130,9 +130,10 @@ module.exports = function({
 			fs.writeFileSync(__dirname + "/src/cmds.json", JSON.stringify(nocmdData));
 		}
 
-		//get banned commands in threadid
+		//lấy lệnh bị cấm trong group
 		var cmds = nocmdData.banned.find(item => item.id == threadID).cmds;
 		for (const item of cmds) {
+			//Nếu bạn dùng lệnh kí tự đặc biệt, hãy thêm vào sau phần == 0 " || contentMessage.indexOf(item) == 0"
 			if (contentMessage.indexOf(prefix + item) == 0) return api.sendMessage("Lệnh này đã bị cấm!", threadID);
 		}
 
@@ -323,15 +324,15 @@ module.exports = function({
 			if (!content) return api.sendMessage("Có vẻ như bạn chưa nhập thông tin, vui lòng nhập thông tin lỗi mà bạn gặp!", threadID, messageID);
 			api.sendMessage(
 				"Có báo cáo lỗi mới từ id: " +
-					senderID +
-					" id support " +
-					Math.floor(Math.random() * (1e4 + 1 - 1e5)) + 1e4 +
-					"\n - ThreadID gặp lỗi: " +
-					threadID +
-					"\n - Lỗi gặp phải: " +
-					content +
-					"\n - lỗi được thông báo vào lúc: " +
-					moment.tz("Asia/Ho_Chi_Minh").format("HH:mm:ss"),
+				senderID +
+				"\n- ID support " +
+				Math.floor(Math.random() * (1e4 + 1 - 1e5)) + 1e4 +
+				"\n- ThreadID gặp lỗi: " +
+				threadID +
+				"\n- Lỗi gặp phải: " +
+				content +
+				"\n- lỗi được thông báo vào lúc: " +
+				moment.tz("Asia/Ho_Chi_Minh").format("HH:mm:ss"),
 				admins[0]
 			);
 			return api.sendMessage("Thông tin lỗi của bạn đã được gửi về admin!, đây là id hỗ trợ của bạn: " + reportID, threadID, messageID);
@@ -430,13 +431,14 @@ module.exports = function({
 				if (err) return api.sendMessage("Đã xảy ra lỗi không mong muốn!", threadID, messageID);
 				var helpMe = JSON.parse(data);
 				if (helpMe.some(item => item.name == content)) {
-					api.sendMessage(
-						`Thông tin lệnh bạn đang tìm: \n - tên: ${helpMe.find(item => item.name == content).name}
-						- Thông tin: ${helpMe.find(item => item.name == content).decs}
-						- usage:  ${prefix + helpMe.find(item => item.name == content).usage}
-						- Hướng dẫn sử dụng: ${prefix + helpMe.find(item => item.name == content).example}
-						- Thuộc loại: ${helpMe.find(item => item.name == content).group}`
-						, threadID, messageID);
+					return api.sendMessage(
+						'Thông tin lệnh bạn đang tìm:' + '\n' +
+						'- Tên lệnh: ' + helpMe.find(item => item.name == content).name + '\n' +
+						'- Thông tin: ' + helpMe.find(item => item.name == content).decs + '\n' +
+						'- Sử dụng: ' + prefix + helpMe.find(item => item.name == content).usage + '\n' +
+						'- Hướng dẫn: ' + prefix + helpMe.find(item => item.name == content).example + '\n' +
+						'- Thuộc loại: ' + helpMe.find(item => item.name == content).group, threadID, messageID
+					);
 				}
 				else {
 					var helpList = [];
@@ -445,10 +447,9 @@ module.exports = function({
 						if (content !== item.name) helpList.push(item.name);
 					});
 					helpName = helpList.join(", ");
-					return api.sendMessage("Lệnh bạn nhập không tồn tại, đây là danh sách lệnh của bot: " + helpName, threadID, messageID);
+					return api.sendMessage("Lệnh bạn nhập không tồn tại, đây là danh sách lệnh của bot:\n" + helpName, threadID, messageID);
 				}
 			});
-			return;
 		}
 
 		//yêu cầu công việc cho bot
@@ -470,6 +471,7 @@ module.exports = function({
 					api.sendMessage("ID " + senderID + " Đã thêm '" + addnew + "' vào request list", admins[0]);
 				}, messageID);
 			}
+
 			else if (content.indexOf("del") == 0 && admins.includes(senderID)) {
 				var deletethisthing = content.slice(4, content.length);
 				var getList = fs.readFileSync(__dirname + "/src/requestList.json");
@@ -480,6 +482,7 @@ module.exports = function({
 				fs.writeFileSync(__dirname + "/src/requestList.json", JSON.stringify(getData));
 				return api.sendMessage("Đã xóa: " + deletethisthing, threadID, messageID);
 			}
+
 			else if (content.indexOf("list") == 0) {
 				var getList = fs.readFileSync(__dirname + "/src/requestList.json");
 				var getData = JSON.parse(getList);
@@ -520,8 +523,8 @@ module.exports = function({
 			else if (!content || !data.nsfw.hasOwnProperty(content) || !data.sfw.hasOwnProperty(content))
 				return api.sendMessage(
 					`=== Tất cả các tag SFW ===\n` + sfwTags +
-					`\n\n=== Tất cả các tag NSFW ===\n` + nsfwTags
-					,threadID,messageID);
+					`\n\n=== Tất cả các tag NSFW ===\n` + nsfwTags, threadID, messageID
+				);
 
 			request({ uri: url }, (error, response, body) => {
 				let picData = JSON.parse(body);
@@ -583,6 +586,7 @@ module.exports = function({
 				});
 				return;
 			}
+
 			else if (content.indexOf(`dog`) !== -1) {
 				request(`https://api.tenor.com/v1/random?key=${tenor}&q=dog&limit=1`, (err, response, body) => {
 					if (err) throw err;
@@ -601,6 +605,7 @@ module.exports = function({
 				});
 				return;
 			}
+
 			else if (content.indexOf(`capoo`) !== -1) {
 				request(`https://api.tenor.com/v1/random?key=${tenor}&q=capoo&limit=1`, (err, response, body) => {
 					if (err) throw err;
@@ -619,6 +624,7 @@ module.exports = function({
 				});
 				return;
 			}
+
 			else if (content.indexOf(`mixi`) !== -1) {
 				request(`https://api.tenor.com/v1/random?key=${tenor}&q=mixigaming&limit=1`, (err, response, body) => {
 					if (err) throw err;
@@ -637,6 +643,7 @@ module.exports = function({
 				});
 				return;
 			}
+
 			else if (content.indexOf(`bomman`) !== -1) {
 				request(`https://api.tenor.com/v1/random?key=${tenor}&q=bommanrage&limit=1`, (err, response, body) => {
 					if (err) throw err;
@@ -836,18 +843,14 @@ module.exports = function({
 				if (err) throw err;
 				var data = JSON.parse(body);
 				api.sendMessage(
-					"Thế giới: \n - Nhiễm: " +
-						data.data.global.cases +
-						"\n - Chết: " +
-						data.data.global.deaths +
-						"\n - Hồi phục: " +
-						data.data.global.recovered +
-						"\nViệt Nam:\n - Nhiễm: " +
-						data.data.vietnam.cases +
-						"\n - Chết: " +
-						data.data.vietnam.deaths +
-						"\n - Phục hồi: " +
-						data.data.vietnam.recovered,
+					"Thế giới:" +
+					"\n- Nhiễm: " + data.data.global.cases +
+					"\n- Chết: " + data.data.global.deaths +
+					"\n- Hồi phục: " + data.data.global.recovered +
+					"\nViệt Nam:" +
+					"\n- Nhiễm: " + data.data.vietnam.cases +
+					"\n- Chết: " + data.data.vietnam.deaths +
+					"\n- Phục hồi: " + data.data.vietnam.recovered,
 					threadID,
 					messageID
 				);
@@ -897,7 +900,7 @@ module.exports = function({
 					return api.sendMessage(`Có ngu đâu mà tát bản thân 😏`,threadID,messageID);
 				api.sendMessage(
 					{
-						body: x + " Vừa Bị Vả Vỡ Mồm \n",
+						body: x + " Vừa Bị Vả Vỡ Mồm",
 						mentions: [
 							{
 								tag: x,
@@ -1050,14 +1053,11 @@ module.exports = function({
 		}
 
 		if (contentMessage == `${prefix}uptime`) {
-			var seconds = process.uptime();
-			var hours = Math.floor(seconds / (60 * 60));
-			var minutes = Math.floor((seconds % (60 * 60)) / 60);
-			var seconds = Math.floor(seconds % 60);
+			var time = process.uptime();
+			var minutes = Math.floor((time % (60 * 60)) / 60);
+			var seconds = Math.floor(time % 60);
 			api.sendMessage(
 				"Bot đã hoạt động được " +
-				hours +
-				" Giờ " +
 				minutes +
 				" Phút " +
 				seconds +
@@ -1247,8 +1247,8 @@ module.exports = function({
 				'teen': "21506052",
 				'bdsm': "17510771",
 				'asian': "9057591",
-				'pornstar': "20404671"
-				//'gay': "19446301"
+				'pornstar': "20404671",
+				'gay': "19446301"
 			};
 
 			if (!content || !album.hasOwnProperty(content)) {
@@ -1407,25 +1407,25 @@ module.exports = function({
 						api.sendMessage(
 							"Thông tin ingame: \n - Tên: " +
 							json.playerstats.gameName +
-							"\n - Số kill đạt được: " +
+							"\n- Số kill đạt được: " +
 							data.find(item => item.name == "total_kills").value +
-							"\n - Số lần đã chết: " +
+							"\n- Số lần đã chết: " +
 							data.find(item => item.name == "total_deaths").value +
-							"\n - kd: " +
+							"\n- KD: " +
 							(data[0]["value"] / data[1]["value"]).toFixed(2) +
-							"\n - thời gian đã chơi trong mm: " +
+							"\n- Thời gian đã chơi trong mm: " +
 							Math.floor(data.find(item => item.name == "total_time_played").value / 60 / 60) +
 							" hours\n - Số lần đã đặt bomb: " +
 							data.find(item => item.name == "total_planted_bombs").value +
-							"\n - Số lần đã gỡ bomb: " +
+							"\n- Số lần đã gỡ bomb: " +
 							data.find(item => item.name == "total_defused_bombs").value +
-							"\n - Số round đã thắng: " +
+							"\n- Số round đã thắng: " +
 							data.find(item => item.name == "total_wins").value +
-							"\n - Số lần mvp: " +
+							"\n- Số lần mvp: " +
 							data.find(item => item.name == "total_mvps").value +
-							"\n - Số match đã chơi: " +
+							"\n- Số match đã chơi: " +
 							data.find(item => item.name == "total_matches_played").value +
-							"\n -Số match đã thắng: " +
+							"\n- Số match đã thắng: " +
 							data.find(item => item.name == "total_matches_won").value,
 							threadID, messageID
 						);
@@ -1447,15 +1447,15 @@ module.exports = function({
 						api.sendMessage(
 							"- Community ban: " +
 							data.CommunityBanned +
-							"\n - Vac: " +
+							"\n- Vac: " +
 							data.VACBanned +
-							"\n - Số lần bị ban: " +
+							"\n- Số lần bị ban: " +
 							data.NumberOfVACBans +
-							"\n - Số lần bị Game ban: " +
+							"\n- Số lần bị Game ban: " +
 							data.NumberOfGameBans +
-							"\n - Trade ban: " +
+							"\n- Trade ban: " +
 							data.EconomyBan +
-							"\n - Số ngày sau khi bị ban: " +
+							"\n- Số ngày sau khi bị ban: " +
 							data.DaysSinceLastBan,
 							threadID,
 							messageID
@@ -1587,7 +1587,7 @@ module.exports = function({
 						"tìm jav/hentai code cho SpermLord"
 					];
 					let result = Math.floor(Math.random() * job.length);
-					let amount = Math.floor(Math.random() * 399) + 1;
+					let amount = Math.floor(Math.random() * 400);
 					api.sendMessage(
 						"Bạn đã làm công việc " +
 						job[result] +
@@ -1622,7 +1622,7 @@ module.exports = function({
 
 				let random = Math.floor(Math.random() * 37);
 				if (isNaN(money)|| money.indexOf("-") !== -1)
-					return api.sendMessage(`số tiền đặt cược của bạn không phải là một con số, vui lòng xem lại cách sử dụng tại !help roul`, threadID, messageID);
+					return api.sendMessage(`Số tiền đặt cược của bạn không phải là một con số, vui lòng xem lại cách sử dụng tại !help roul`, threadID, messageID);
 				if (!money || !color)
 					return api.sendMessage("Sai format", threadID, messageID);
 				if (money > moneydb)
@@ -1640,20 +1640,20 @@ module.exports = function({
 
 				if (random == 0 && color == 2) {
 					money *= 15;
-					api.sendMessage(`bạn đã chọn màu 💚, bạn đã thắng với số tiền được nhân lên 15: ${money *= 15} đô`, threadID, () => economy.updateMoney(senderID, money), messageID);
+					api.sendMessage(`Bạn đã chọn màu 💚, bạn đã thắng với số tiền được nhân lên 15: ${money *= 15} đô`, threadID, () => economy.updateMoney(senderID, money), messageID);
 					modules.log(`${senderID} Won ${money} on green`);
 				}
 				else if (isOdd(random) && color == 1) {
 					money = parseInt(money * 1.5);
-					api.sendMessage(`bạn đã chọn màu ❤️, bạn đã thắng với số tiền nhân lên 1.5: ${money} đô`, threadID, () => economy.updateMoney(senderID, money), messageID);
+					api.sendMessage(`Bạn đã chọn màu ❤️, bạn đã thắng với số tiền nhân lên 1.5: ${money} đô`, threadID, () => economy.updateMoney(senderID, money), messageID);
 					modules.log(`${senderID} Won ${money} on red`);
 				}
 				else if (!isOdd(random) && color == 0) {
 					money = parseInt(money * 2);
-					api.sendMessage(`bạn đã chọn màu 🖤️, bạn đã thắng với số tiền nhân lên 2: ${money} đô`, threadID, () => economy.updateMoney(senderID, money), messageID);
+					api.sendMessage(`Bạn đã chọn màu 🖤️, bạn đã thắng với số tiền nhân lên 2: ${money} đô`, threadID, () => economy.updateMoney(senderID, money), messageID);
 					modules.log(`${senderID} Won ${money} on black`);
 				}
-				else return api.sendMessage(`bạn đã ra đê ở và mất trắng số tiền: ${money} đô :'(`, threadID, () => economy.subtractMoney(senderID, money), messageID);
+				else return api.sendMessage(`Bạn đã ra đê ở và mất trắng số tiền: ${money} đô :'(`, threadID, () => economy.subtractMoney(senderID, money), messageID);
 			});
 			return;
 		}
@@ -1668,9 +1668,9 @@ module.exports = function({
 				var money = string[0];
 				let win = false;
 				if (isNaN(money)|| money.indexOf("-") !== -1)
-					return api.sendMessage(`số tiền đặt cược của bạn không phải là một con số, vui lòng xem lại cách sử dụng tại !help sl`, threadID, messageID);
+					return api.sendMessage(`Số tiền đặt cược của bạn không phải là một con số, vui lòng xem lại cách sử dụng tại !help sl`, threadID, messageID);
 				if (!money)
-					return api.sendMessage("chưa nhập số tiền đặt cược!", threadID, messageID);
+					return api.sendMessage("Chưa nhập số tiền đặt cược!", threadID, messageID);
 				if (money > moneydb)
 					return api.sendMessage(`Số tiền của bạn không đủ`, threadID, messageID);
 				if (money < 50) 
@@ -1763,7 +1763,7 @@ module.exports = function({
 			else getVideo(content);
 			function getVideo(content) {
 				ytdl.getInfo(content, function(err, info) {
-					if (err) return api.sendMessage('link youtube không hợp lệ!', threadID, messageID);
+					if (err) return api.sendMessage('Link youtube không hợp lệ!', threadID, messageID);
 					if (info.length_seconds > 360) return api.sendMessage("Độ dài video vượt quá mức cho phép, tối thiểu là 6 phút!", threadID, messageID);
 					api.sendMessage("Đợi em một xíu em đang xử lý...", threadID, messageID);
 					let callback = function() {
@@ -1817,7 +1817,7 @@ module.exports = function({
 			else getMusic(content);
 			function getMusic(content) {
 				ytdl.getInfo(content, function(err, info) {
-					if (err) return api.sendMessage('link youtube không hợp lệ!', threadID, messageID);
+					if (err) return api.sendMessage('Llink youtube không hợp lệ!', threadID, messageID);
 					if (info.length_seconds > 360) return api.sendMessage("Độ dài video vượt quá mức cho phép, tối thiểu là 6 phút!", threadID, messageID);
 					api.sendMessage("Đợi em một xíu em đang xử lý...", threadID, messageID);
 					let callback = function() {

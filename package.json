@@ -1,6 +1,6 @@
 {
   "name": "Sumichan",
-  "version": "3.3.2",
+  "version": "3.3.3",
   "description": "I am Sumi-chan - A facebook messenger bot",
   "main": "index.js",
   "scripts": {
