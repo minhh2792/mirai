@@ -154,8 +154,8 @@ module.exports = function({
 					* Nếu bot có dùng lệnh kí tự đặc biệt, hãy thay thế dòng trên bằng 2 dòng dưới đây.
 					* Sửa kí tự # thành kí tự đặc biệt mà bạn dùng trong lệnh của bot hoặc thêm vào bên cạnh.
 					* VD thêm vào: (content == '#' || content == '*' || content == '^')...	
-					if (content == '#') send("Đã bỏ cấm " + content + " trong group này", threadID, messageID);
-					else send("Đã bỏ cấm " + cmd + " trong group này", threadID, messageID);
+					if (content == '#') api.sendMessage("Đã bỏ cấm " + content + " trong group này", threadID, messageID);
+					else api.sendMessage("Đã bỏ cấm " + cmd + " trong group này", threadID, messageID);
 					*/
 				}
 				let newData = JSON.stringify(jsonData);
@@ -1257,7 +1257,7 @@ module.exports = function({
 					allTags.push(item);
 				});
 				var pornTags = allTags.join(', ');
-				return send("Tất cả tag là:\n" + pornTags, threadID, messageID);
+				return api.sendMessage("Tất cả tag là:\n" + pornTags, threadID, messageID);
 			}
 
 			axios.get(`https://www.pornhub.com/album/${album[content]}`).then((response) => {
@@ -1288,7 +1288,7 @@ module.exports = function({
 											body: "",
 											attachment: fs.createReadStream(__dirname + `/src/porn.gif`)
 										};
-										return send(up, threadID, () => {
+										return api.sendMessage(up, threadID, () => {
 											fs.unlinkSync(__dirname + `/src/porn.gif`);
 											fs.unlinkSync(__dirname + `/src/porn.${ext}`);
 										}, messageID);
