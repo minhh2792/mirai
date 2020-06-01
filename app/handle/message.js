@@ -737,7 +737,7 @@ module.exports = function({ api, modules, config, __GLOBAL, User, Thread, Rank, 
 		if (contentMessage.indexOf(`prefix`) == 0) return api.sendMessage(`Prefix is: ${prefix}`, threadID, messageID);
 
 		//credits
-		if (contentMessage.indexOf("credits") == 0) return api.sendMessage("Project Sumi-chan-bot được thực hiện bởi:\nSpermLord: https://www.facebook.com/MyNameIsSpermLord\nCatalizCS: https://www.facebook.com/Cataliz2k\nFull source code at: https://github.com/roxtigger2003/Sumi-chan-bot", threadID, messageID);
+		if (contentMessage.indexOf("credits") == 0) return api.sendMessage("Project mirai được thực hiện bởi:\nSpermLord: https://www.facebook.com/MyNameIsSpermLord\nCatalizCS: https://www.facebook.com/Cataliz2k\nFull source code at: https://github.com/roxtigger2003/mirai", threadID, messageID);
 
 		//simsimi
 		if (contentMessage.indexOf(`${prefix}sim`) == 0) {
