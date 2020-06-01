@@ -77,7 +77,7 @@ Click this button:
 
 - **SpermLord** - *Coder and fix bug :v* - [GitHub](https://github.com/spermlord)
 
-**Và cùng nhiều anh em tester đã đồng hành cùng project xuống gần 4 tháng! mình xin cám ơn!!**
+**Và cùng nhiều anh em tester đã đồng hành cùng project suốt gần 4 tháng! mình xin cám ơn!!**
 
 ## License
 
