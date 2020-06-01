@@ -1,7 +1,7 @@
 module.exports = {
 	apps: [
 		{
-			name: 'Glitch Version', 
+			name: 'Mirai Bot', 
 			script: './index.js',
 			autorestart: true,
 			exec_mode: 'cluster',

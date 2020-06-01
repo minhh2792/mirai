@@ -9,7 +9,7 @@ module.exports = function({ api, models, __GLOBAL }) {
 		modules.log("Khởi tạo biến môi trường.");
 		__GLOBAL.userBlocked = (await User.getUsers({ block: true })).map(e => e.uid);
 		__GLOBAL.threadBlocked = (await Thread.getThreads({ block: true })).map(e => e.threadID);
-		__GLOBAL.threadBlockResend = (await Thread.getThreads({ blockResend: true })).map(e => e.threadID);
+		__GLOBAL.threadBlockedResend = (await Thread.getThreads({ blockResend: true })).map(e => e.threadID);
 		modules.log("Khởi tạo biến môi trường xong.");
 	})();
 	const handleMessage = require("./handle/message")({ api, modules, config, __GLOBAL, User, Thread, Rank, economy });

@@ -1,14 +1,14 @@
 {
-  "name": "Sumichan",
-  "version": "3.8.3",
-  "description": "I am Sumi-chan - A facebook messenger bot",
+  "name": "miraibot",
+  "version": "3.8.5",
+  "description": "Source code này có thể biến tài khoản facebook của bạn trở thành một con bot thú vị ;)",
   "main": "index.js",
   "scripts": {
     "start": "pm2 start app.config.js --no-daemon --exp-backoff-restart-delay=100 --restart-delay 100"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/roxtigger2003/Sumi-chan-Glitch-Version.git"
+    "url": "git+https://github.com/roxtigger2003/mirai.git"
   },
   "keywords": [
     "bot",
@@ -19,9 +19,9 @@
   "author": "roxtigger2003 & SpermLord",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/roxtigger2003/Sumi-chan-Glitch-Version/issues"
+    "url": "https://github.com/roxtigger2003/mirai/issues"
   },
-  "homepage": "https://github.com/roxtigger2003/Sumi-chan-Glitch-Version#readme",
+  "homepage": "https://github.com/roxtigger2003/mirai#readme",
   "engines": {
     "node": "12.x"
   },
@@ -59,6 +59,7 @@
     "readline": "^1.3.0",
     "request": "^2.88.2",
     "request-promise": "^4.2.5",
+    "sagiri": "1.5.2",
     "sequelize": "^5.21.6",
     "string-similarity": "^4.0.1",
     "sqlite3": "^4.2.0",

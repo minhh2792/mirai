@@ -9,7 +9,8 @@ module.exports = {
 	wolfarm: process.env.WOLFARM || '',
 	yandex: process.env.YANDEX || '',
 	tenor: process.env.TENOR || '',
-	openweather: process.env.OPENWEATHER || '', 
+	openweather: process.env.OPENWEATHER || '',
+	saucenao: process.env.SAUCENAO || '', 
 	admins: (process.env.ADMINS || '').split('_').map(e => parseInt(e)),
 	database: {
 		postgres: {

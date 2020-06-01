@@ -130,7 +130,7 @@
 		"decs":"Lấy rank hiện tại của bạn trên hệ thống bot",
 		"usage":"rank [tag người cần lấy] hoặc rank [id] hoặc rank",
 		"example":"rank @Sumi-chan",
-		"group":"general"
+		"group":"system"
 	},
 	{
 		"name":"anime tag",
@@ -228,13 +228,6 @@
 		"decs":"Bảo bot có thể làm toán",
 		"usage":"math [phép toán]",
 		"example":"math 1+1",
-		"group":"general"
-	},
-	{
-		"name":"local",
-		"decs":"Lấy thông tin ip mà bạn nhập",
-		"usage":"local [ip hoặc url]",
-		"example":"local 192.168.1.1",
 		"group":"general"
 	},
 	{
@@ -383,5 +376,12 @@
 		"usage":"poll [tên/chủ đề] -> [lựa chọn 1] | [lựa chọn 2] | [lựa chọn n+1]",
 		"example":"poll Nghĩa or Tâm? -> Nghĩa | Tâm",
 		"group":"general"
+	},
+	{
+		"name":"resend",
+		"decs":"Bật tắt tự động gửi lại tin nhắn bị gỡ",
+		"usage":"resend [on hoặc off]",
+		"example":"resend off",
+		"group":"system"
 	}
 ]

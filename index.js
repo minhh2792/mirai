@@ -12,7 +12,7 @@ const __GLOBAL = new Object({
 	threadBlocked: new Array(),
 	userBlocked: new Array(),
 	unsend: new Array(),
-	threadBlockResend: new Array()
+	threadBlockedResend: new Array()
 });
 
 app.get("/", (request, response) => response.sendFile(__dirname + "/view/index.html"));

@@ -63,7 +63,7 @@ module.exports = function ({ models, api }) {
 		return unban(threadID, true);
 	}
 
-	function offResend(threadID, block = false) {
+	function offResend(threadID, blockResend = false) {
 		return Thread.findOne({
 			where: {
 				threadID

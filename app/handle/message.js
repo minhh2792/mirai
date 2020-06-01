@@ -1,6 +1,6 @@
 module.exports = function({ api, modules, config, __GLOBAL, User, Thread, Rank, economy }) {
 	/* ================ Config ==================== */
-	let {prefix, googleSearch, wolfarm, yandex, openweather, tenor, admins, ENDPOINT} = config;
+	let {prefix, googleSearch, wolfarm, yandex, openweather, tenor, saucenao, admins, ENDPOINT} = config;
 	const fs = require("fs");
 	const moment = require("moment-timezone");
 	const request = require("request");
@@ -250,20 +250,20 @@ module.exports = function({ api, modules, config, __GLOBAL, User, Thread, Rank, 
 			Thread.offResend(parseInt(threadID)).then((success) => {
 				if (!success) return api.sendMessage("Oops, không thể tắt resend ở nhóm này!", threadID);
 				api.sendMessage("Đã tắt resend tin nhắn thành công!", threadID);
-				__GLOBAL.threadBlockResend.push(parseInt(threadID));
+				__GLOBAL.threadBlockedResend.push(parseInt(threadID));
 			})
 			return;
 		}
 
 		//off resend
-		if (__GLOBAL.threadBlockResend.includes(threadID)) {
+		if (__GLOBAL.threadBlockedResend.includes(threadID)) {
 			if (contentMessage == `${prefix}resend on`) {
 				const indexOfThread = __GLOBAL.threadBlockResend.indexOf(threadID);
 				if (indexOfThread == -1) return api.sendMessage("Nhóm này chưa tắt resend 🤔", threadID);
 				Thread.onResend(threadID).then(success => {
 					if (!success) return api.sendMessage("Oops, không thể bật resend ở nhóm này!", threadID);
 					api.sendMessage("Đã bật resend tin nhắn, bạn xoá tôi sẽ nhắc lại tin nhắn bạn đã xoá 😈", threadID);
-					__GLOBAL.threadBlockResend.splice(indexOfThread, 1);
+					__GLOBAL.threadBlockedResend.splice(indexOfThread, 1);
 				});
 			}
 			return;
@@ -675,6 +675,49 @@ module.exports = function({ api, modules, config, __GLOBAL, User, Thread, Rank, 
 				};
 				request(getURL).pipe(fs.createWriteStream(__dirname + `/src/anime.${ext}`)).on("close", callback);
 			});
+
+		//saucenao
+		if (contentMessage.indexOf(`${prefix}saucenao`) == 0) {
+			if (event.type != "message_reply") return api.sendMessage(`vui lòng bạn reply bức ảnh cần phải tìm!`, threadID, messageID);
+			var BaseJson = event.messageReply.attachments;
+			if (event.messageReply.attachments.length > 1) return api.sendMessage(`vui lòng reply một ảnh thay gì nhiều ảnh!`, threadID, messageID);
+			if (event.messageReply.attachments[0].type == 'photo') {
+				if (saucenao == '' || saucenao == undefined) return api.sendMessage(`Chưa có api của saucenao!!`, threadID, messageID);
+				var imgURL = event.messageReply.attachments[0].url;
+				const sagiri = require('sagiri'),
+				search = new sagiri(saucenao, {
+					numRes: 1
+				});
+
+				search.getSauce(imgURL).then(response => {
+					let data = response[0];
+					let results = {
+						thumbnail: data.original.header.thumbnail,
+						similarity: data.similarity,
+						material: data.original.data.material || 'none',
+						characters: data.original.data.characters || 'none',
+						creator: data.original.data.creator || 'none',
+						site: data.site,
+						url: data.url
+					};
+					const minSimilarity = 30;
+					if (minSimilarity <= ~~results.similarity) {
+						api.sendMessage(
+						'Đây là kết quả tìm kiếm được\n' +
+						'-------------------------\n' +
+						'- Độ tương tự: ' + results.similarity + '%\n' +
+						'- Material: ' + results.material + '\n' +
+						'- Characters: ' + results.characters + '\n' +
+						'- Creator: ' + results.creator + '\n' +
+						'- Original site: ' + results.site + ' - ' + results.url, threadID, messageID);
+					} else {
+						api.sendMessage(`chà thấy kết quả nào trùng với ảnh bạn đang tìm kiếm :'(`, threadID, messageID);
+					}
+				});
+			}
+			return;
+		}
+
 
 		/* ==================== General Commands ================ */
 
