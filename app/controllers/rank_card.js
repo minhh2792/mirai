@@ -13,13 +13,10 @@ function getAvatar(id) {
 
 const __root = path.resolve(__dirname, "../material");
 module.exports = async function(data) {
-	const { id = 4, name, level = "?", expCurrent, expNextLevel } = data;
-	let fontpath = ["AvantGarde_Demi.ttf", "AvantGarde.ttf"].map(e =>
-		path.resolve(__root, "./font/", e)
-	);
+	const { id, name, level, expCurrent, expNextLevel } = data;
+	let fontpath = ["AvantGarde_Demi.ttf", "AvantGarde.ttf"].map(e => path.resolve(__root, "./font/", e));
 	const buffer = await getAvatar(id);
 	fs.writeFileSync(path.resolve(__root, `avt_${id}.png`), buffer);
-
 	fs.writeFileSync(
 		path.resolve(__root, "name_txt.png"),
 		text2png(name, {
@@ -29,7 +26,6 @@ module.exports = async function(data) {
 			localFontName: "AvantGarde-Demi"
 		})
 	);
-
 	fs.writeFileSync(
 		path.resolve(__root, "score_txt.png"),
 		text2png(`${expCurrent} / ${expNextLevel}`, {
@@ -39,7 +35,6 @@ module.exports = async function(data) {
 			localFontName: "AvantGarde"
 		})
 	);
-
 	fs.writeFileSync(
 		path.resolve(__root, "level_txt.png"),
 		text2png(level < 10 ? " " + level : level.toString(), {
@@ -49,34 +44,13 @@ module.exports = async function(data) {
 			localFontName: "AvantGarde"
 		})
 	);
-
-	let imgpath = [
-		"bg.jpg",
-		`avt_${id}.png`,
-		"name_txt.png",
-		"level_txt.png",
-		"score_txt.png"
-	].map(e => path.resolve(__root, e));
-
+	let imgpath = ["bg.jpg", `avt_${id}.png`, "name_txt.png", "level_txt.png", "score_txt.png"].map(e => path.resolve(__root, e));
 	let readJimp = [];
 	imgpath.forEach(i => {
 		readJimp.push(jimp.read(i));
 	});
-	// todo: global ranking//
-	const [bg, avt, name_txt, level_txt, score_txt] = await Promise.all(
-		readJimp
-	);
-
-	bg.composite(bg, 0, 0)
-		.composite(avt.resize(130, jimp.AUTO), 72, 40)
-		.composite(name_txt, 275, 110)
-		.composite(level_txt, 335, 45)
-		.composite(score_txt, 410, 147)
-
+	const [bg, avt, name_txt, level_txt, score_txt] = await Promise.all(readJimp);
+	bg.composite(bg, 0, 0).composite(avt.resize(130, jimp.AUTO), 72, 40).composite(name_txt, 275, 110).composite(level_txt, 335, 45).composite(score_txt, 410, 147)
 	const pathImg = path.resolve(__root, `../temp/${id}.png`);
-	return await new Promise(function(resolve) {
-		bg.write(pathImg, () => {
-			resolve(pathImg);
-		});
-	});
+	return await new Promise((resolve) => bg.write(pathImg, () => resolve(pathImg)));
 };

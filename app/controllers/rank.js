@@ -7,12 +7,10 @@ module.exports = function({ models, api }) {
 			where: {
 				uid
 			}
-		})
-			.then(function(user) {
-				if (!user) return;
-				return user.get({ plain: true });
-			})
-			.then(e => getInfo(e.point));
+		}).then(function(user) {
+			if (!user) return;
+			return user.get({ plain: true }).point;
+		}).then(e => getInfo(e));
 	}
 
 	function updatePoint(uid, pointIncrement) {
@@ -20,65 +18,34 @@ module.exports = function({ models, api }) {
 			where: {
 				uid
 			}
-		})
-			.then(function(user) {
-				if (!user) return;
-				const { point } = user.get({ plain: true });
-				return user.update({
-					point: point + pointIncrement
-				});
-			})
-			.then(function() {
-				return true;
-			})
-			.catch(function(error) {
-				logger(error, 2);
-				return false;
+		}).then(function(user) {
+			if (!user) return;
+			const pointData = user.get({ plain: true }).point;
+			return user.update({
+				point: pointData + pointIncrement
 			});
+		}).then(function() {
+			return true;
+		}).catch(function(error) {
+			logger(error, 2);
+			return false;
+		});
 	}
 
-	function setPoint(uid, pointIncrement) {
+	function setPoint(uid, point) {
 		return User.findOne({
 			where: {
 				uid
 			}
-		})
-			.then(function(user) {
-				if (!user) return;
-				const { point } = user.get({ plain: true });
-				return user.update({
-					point: pointIncrement
-				});
-			})
-			.then(function() {
-				return true;
-			})
-			.catch(function(error) {
-				logger(error, 2);
-				return false;
-			});
-	}
-
-	function setDefault(uid) {
-		return User.findOne({
-			where: {
-				uid
-			}
-		})
-			.then(function(user) {
-				if (!user) return;
-				const { point } = user.get({ plain: true });
-				return user.update({
-					point: 0
-				});
-			})
-			.then(function() {
-				return true;
-			})
-			.catch(function(error) {
-				logger(error, 2);
-				return false;
-			});
+		}).then(function(user) {
+			if (!user) return;
+			return user.update({ point });
+		}).then(function() {
+			return true;
+		}).catch(function(error) {
+			logger(error, 2);
+			return false;
+		});
 	}
 
 	function expToLevel(point) {
@@ -95,20 +62,16 @@ module.exports = function({ models, api }) {
 		const level = expToLevel(point);
 		const expCurrent = point - levelToExp(level);
 		const expNextLevel = levelToExp(level + 1) - levelToExp(level);
-		const math = point * 381 / (level * 40 + level * 2.5);
-		const rankGlobal = math / 381;
 		return {
 			level,
 			expCurrent,
-			expNextLevel,
-			rankGlobal
+			expNextLevel
 		};
 	}
 
 	return {
 		getPoint,
 		updatePoint,
-		setPoint,
-		setDefault
+		setPoint
 	};
 };

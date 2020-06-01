@@ -15,25 +15,20 @@ module.exports = function({ models, api }) {
 		});
 	}
 
-	function updateDailyTime(uid, time) {
+	function updateDailyTime(uid, dailytime) {
 		return User.findOne({
 			where: {
 				uid
 			}
-		})
-			.then(function(user) {
-				if (!user) return;
-				return user.update({
-					dailytime: time
-				});
-			})
-			.then(function() {
-				return true;
-			})
-			.catch(function(error) {
-				logger(error, 2);
-				return false;
-			});
+		}).then(function(user) {
+			if (!user) return;
+			return user.update({ dailytime });
+		}).then(function() {
+			return true;
+		}).catch(function(error) {
+			logger(error, 2);
+			return false;
+		});
 	}
 
 	/* ==================== Work ==================== */
@@ -49,25 +44,20 @@ module.exports = function({ models, api }) {
 		});
 	}
 
-	function updateWorkTime(uid, time) {
+	function updateWorkTime(uid, worktime) {
 		return User.findOne({
 			where: {
 				uid
 			}
-		})
-			.then(function(user) {
-				if (!user) return;
-				return user.update({
-					worktime: time
-				});
-			})
-			.then(function() {
-				return true;
-			})
-			.catch(function(error) {
-				logger(error, 2);
-				return false;
-			});
+		}).then(function(user) {
+			if (!user) return;
+			return user.update({ worktime });
+		}).then(function() {
+			return true;
+		}).catch(function(error) {
+			logger(error, 2);
+			return false;
+		});
 	}
 
 	/* ==================== Money ==================== */
@@ -88,21 +78,18 @@ module.exports = function({ models, api }) {
 			where: {
 				uid
 			}
-		})
-			.then(function(user) {
-				if (!user) return;
-				const moneyData = user.get({ plain: true }).economy;
-				return user.update({
-					economy: moneyData + moneyIncrement
-				});
-			})
-			.then(function() {
-				return true;
-			})
-			.catch(function(error) {
-				logger(error, 2);
-				return false;
+		}).then(function(user) {
+			if (!user) return;
+			const moneyData = user.get({ plain: true }).economy;
+			return user.update({
+				economy: moneyData + moneyIncrement
 			});
+		}).then(function() {
+			return true;
+		}).catch(function(error) {
+			logger(error, 2);
+			return false;
+		});
 	}
 
 	function subtractMoney(uid, moneyDecrement) {
@@ -110,21 +97,18 @@ module.exports = function({ models, api }) {
 			where: {
 				uid
 			}
-		})
-			.then(function(user) {
-				if (!user) return;
-				const moneyData = user.get({ plain: true }).economy;
-				return user.update({
-					economy: moneyData - moneyDecrement
-				});
-			})
-			.then(function() {
-				return true;
-			})
-			.catch(function(error) {
-				logger(error, 2);
-				return false;
+		}).then(function(user) {
+			if (!user) return;
+			const moneyData = user.get({ plain: true }).economy;
+			return user.update({
+				economy: moneyData - moneyDecrement
 			});
+		}).then(function() {
+			return true;
+		}).catch(function(error) {
+			logger(error, 2);
+			return false;
+		});
 	}
 
 	function setMoney(uid, money) {
@@ -132,20 +116,17 @@ module.exports = function({ models, api }) {
 			where: {
 				uid
 			}
-		})
-			.then(function(user) {
-				if (!user) return;
-				return user.update({
-					economy: money
-				});
-			})
-			.then(function() {
-				return true;
-			})
-			.catch(function(error) {
-				logger(error, 2);
-				return false;
+		}).then(function(user) {
+			if (!user) return;
+			return user.update({
+				economy: money
 			});
+		}).then(function() {
+			return true;
+		}).catch(function(error) {
+			logger(error, 2);
+			return false;
+		});
 	}
 	return {
 		getDailyTime,

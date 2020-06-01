@@ -3,9 +3,9 @@ module.exports = function ({ Sequelize, sequelize }) {
 	const user = require("./models/user")({ sequelize, Sequelize }),
 				thread = require("./models/thread")({ sequelize, Sequelize }),
 				log = require("./models/log")({ sequelize, Sequelize });
-	user.sync({force});
-	thread.sync({force});
-	log.sync({force});
+	user.sync({ force });
+	thread.sync({ force });
+	log.sync({ force });
 	return {
 		model: {
 			user,

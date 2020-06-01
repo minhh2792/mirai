@@ -12,6 +12,13 @@ module.exports = function ({ sequelize, Sequelize }) {
 		block: {
 			type: Sequelize.BOOLEAN,
 			defaultValue: false
+		},
+		blockResend: {
+			type: Sequelize.BOOLEAN,
+			defaultValue: false
+		},
+		name: {
+			type: Sequelize.STRING
 		}
 	})
 	return Thread;

@@ -73,7 +73,7 @@ function loadDB() {
 		var tables;
 		try {
 			var xhr = new XMLHttpRequest();
-			xhr.open("GET", "data.sqlite");
+			xhr.open("GET", "../data.sqlite");
 			xhr.responseType = "arraybuffer";
 			xhr.onload = function(e) {
 				db = new SQL.Database(new Uint8Array(this.response));
