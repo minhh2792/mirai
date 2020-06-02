@@ -1,0 +1,6 @@
+{
+  "name": "Mirai Bot",
+  "description": "Source code này có thể biến tài khoản facebook của bạn trở thành một con bot thú vị ;)",
+  "repository": "https://github.com/roxtigger2003/mirai",
+  "keywords": ["node", "messenger bot", "bot", "fca-unofficial"]
+}
