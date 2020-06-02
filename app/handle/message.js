@@ -1206,6 +1206,25 @@ module.exports = function({ api, modules, config, __GLOBAL, User, Thread, Rank, 
 				}, messageID);
 			});
 		}
+		
+		//spacex
+		if (contentMessage.indexOf(`${prefix}spacex`) == 0) {
+				request (`https://api.spacexdata.com/v3/launches/latest`, (err, response, body) => {
+					if (err) throw err;
+					var Data = JSON.parse(body);
+			
+					api.sendMessage(
+					"Thông tin đợt phóng mới nhất của SpaceX:" +
+					"\n-Mission: " + data.mission_name +
+					"\n-Năm phóng: " + data.launch_year +
+					"\n-Thời gian phóng: " + data.launch_date_local +
+					"\n-Tên lửa: " + data.rocket.rocket_name +
+					"\n-Link Youtube: " + data.links.video_link +,
+					threadID,
+					messageID
+				);
+				});
+			}
 
 		//hentaivn
 		if (contentMessage.indexOf(`${prefix}hentaivn -i`) == 0) {
